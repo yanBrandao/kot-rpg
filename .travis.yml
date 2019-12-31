@@ -9,7 +9,7 @@ cache:
   - $HOME/.m2
 
 script:
-  mvn test
+  - gradle assemble
 
-after_success:
-  - mvn clean test jacoco:report coveralls:report
+#after_success:
+#  - mvn clean test jacoco:report coveralls:report
