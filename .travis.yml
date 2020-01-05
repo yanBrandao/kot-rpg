@@ -11,5 +11,9 @@ cache:
 script:
   - gradle assemble
 
-#after_success:
+branches:
+  only:
+    - develop
+
+    #after_success:
 #  - mvn clean test jacoco:report coveralls:report
