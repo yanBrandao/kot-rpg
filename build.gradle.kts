@@ -58,6 +58,6 @@ tasks.jacocoTestReport {
 }
 
 coveralls {
-	sourceDirs += "src/main/kotlin"
+	sourceDirs.add("src/main/kotlin")
 	jacocoReportPath = "${buildDir}/jacocoReport/jacocoReport.xml"
 }
