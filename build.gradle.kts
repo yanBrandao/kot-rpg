@@ -58,5 +58,5 @@ tasks.jacocoTestReport {
 }
 
 coveralls {
-	jacocoReportPath = "${buildDir}/jacocoReport.xml"
+	jacocoReportPath = "${buildDir}/jacocoReport/jacocoReport.xml"
 }
