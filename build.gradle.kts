@@ -4,6 +4,7 @@ plugins {
 	jacoco
 	id("org.springframework.boot") version "2.2.2.RELEASE"
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
+	id("net.saliman.cobertura") version "3.0.0"
 	kotlin("jvm") version "1.3.61"
 	kotlin("plugin.spring") version "1.3.61"
 	id ("com.github.kt3k.coveralls") version "2.9.0"
@@ -50,11 +51,11 @@ tasks.withType<KotlinCompile> {
 tasks.jacocoTestReport {
 	reports {
         xml.isEnabled = true
-		csv.isEnabled = false
+		html.isEnabled = true
 		html.destination = file("${buildDir}/jacocoHtml")
     }
 }
 
 coveralls {
-	jacocoReportPath = "build/jacocoReport/jacocoTestReport.xml"
+	jacocoReportPath = "${buildDir}/jacocoReport/jacocoTestReport.xml"
 }
