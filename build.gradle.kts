@@ -53,9 +53,10 @@ tasks.jacocoTestReport {
         xml.isEnabled = true
 		html.isEnabled = true
 		html.destination = file("${buildDir}/jacocoHtml")
+		xml.destination = file("${buildDir}/jacocoReport.xml")
     }
 }
 
 coveralls {
-	jacocoReportPath = "${buildDir}/jacocoReport/jacocoTestReport.xml"
+	jacocoReportPath = "${buildDir}/jacocoReport.xml"
 }
