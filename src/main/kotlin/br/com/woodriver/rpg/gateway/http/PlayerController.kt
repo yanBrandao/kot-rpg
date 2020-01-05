@@ -1,9 +1,10 @@
 package br.com.woodriver.rpg.gateway.http
 
-import br.com.woodriver.rpg.domain.Player
+import br.com.woodriver.rpg.domains.Player
 import br.com.woodriver.rpg.exceptions.BadRequestException
 import br.com.woodriver.rpg.usecase.player.CreateOrUpdatePlayer
 import br.com.woodriver.rpg.usecase.player.DeletePlayer
+import br.com.woodriver.rpg.usecase.player.GetAllPlayers
 import br.com.woodriver.rpg.usecase.player.Top10BestPlayers
 import org.springframework.web.bind.annotation.*
 
@@ -11,11 +12,12 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("players")
 class PlayerController(val top10BestPlayers: Top10BestPlayers,
                        val createOrUpdatePlayer: CreateOrUpdatePlayer,
-                       val deletePlayer: DeletePlayer) {
+                       val deletePlayer: DeletePlayer,
+                       val getAllPlayers: GetAllPlayers) {
 
     @GetMapping
     fun all(): List<Player>{
-        return listOf(Player("","Yan", 99), Player("", "André", 20))
+        return getAllPlayers.execute()
     }
 
     @GetMapping("/top10")
