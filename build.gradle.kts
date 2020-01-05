@@ -6,6 +6,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
 	kotlin("jvm") version "1.3.61"
 	kotlin("plugin.spring") version "1.3.61"
+	id ("com.github.kt3k.coveralls") version "2.9.0"
 }
 
 group = "com.example"
@@ -48,8 +49,12 @@ tasks.withType<KotlinCompile> {
 
 tasks.jacocoTestReport {
 	reports {
-        xml.isEnabled = false
+        xml.isEnabled = true
 		csv.isEnabled = false
 		html.destination = file("${buildDir}/jacocoHtml")
     }
+}
+
+coveralls {
+	jacocoReportPath = "build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
 }
