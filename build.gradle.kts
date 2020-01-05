@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+	jacoco
 	id("org.springframework.boot") version "2.2.2.RELEASE"
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
 	kotlin("jvm") version "1.3.61"
@@ -33,9 +34,22 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
+jacoco {
+	toolVersion = "0.8.5"
+	reportsDir = file("$buildDir/jacocoReport")
+}
+
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
 	}
+}
+
+tasks.jacocoTestReport {
+	reports {
+        xml.isEnabled = false
+		csv.isEnabled = false
+		html.destination = file("${buildDir}/jacocoHtml")
+    }
 }

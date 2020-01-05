@@ -15,5 +15,5 @@ branches:
   only:
     - develop
 
-    #after_success:
-#  - mvn clean test jacoco:report coveralls:report
+after_success:
+  - ./gradlew jacocoTestReport coveralls
