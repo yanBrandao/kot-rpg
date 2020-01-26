@@ -4,9 +4,9 @@ import br.com.woodriver.rpg.gateway.repository.PlayerRepository
 import org.springframework.stereotype.Component
 
 @Component
-class DeletePlayer(val playerRepository: PlayerRepository) {
+class DeletePlayerUseCase(val playerRepository: PlayerRepository) {
 
-    fun execute(key: String){
+    fun execute(key: Long){
         return playerRepository.deleteById(key)
     }
 }
