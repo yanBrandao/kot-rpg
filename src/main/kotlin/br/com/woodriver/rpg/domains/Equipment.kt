@@ -2,7 +2,10 @@ package br.com.woodriver.rpg.domains
 
 import br.com.woodriver.rpg.domains.compositekeys.EquipmentId
 import br.com.woodriver.rpg.domains.types.PositionType
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.EmbeddedId
+import javax.persistence.Entity
+import javax.persistence.Table
 
 @Entity
 @Table(name = "KOR_EQUIPMENT")

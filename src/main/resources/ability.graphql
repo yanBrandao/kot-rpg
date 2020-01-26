@@ -1,0 +1,15 @@
+type Query{
+    ability: [Ability]
+}
+
+type Ability{
+    id: ID!
+    name: String
+    typeAbility: String
+}
+
+type Mutation{
+    newAbility(name: String!, typeAbility: String!): Ability!
+    deleteAbility(id: ID!): Boolean
+    updateAbility(id: ID!, name: String!, typeAbility: String!): Ability!
+}

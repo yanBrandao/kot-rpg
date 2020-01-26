@@ -1,13 +1,11 @@
 package br.com.woodriver.rpg.gateway.http
 
 import br.com.woodriver.rpg.domains.BlizzardItem
-import br.com.woodriver.rpg.domains.Player
 import br.com.woodriver.rpg.usecase.item.GetBlizzardItemsUseCase
-import br.com.woodriver.rpg.usecase.player.CreateOrUpdatePlayerUseCase
-import br.com.woodriver.rpg.usecase.player.DeletePlayerUseCase
-import br.com.woodriver.rpg.usecase.player.GetAllPlayersUseCase
-import br.com.woodriver.rpg.usecase.player.Top10BestPlayersUseCase
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("items")
