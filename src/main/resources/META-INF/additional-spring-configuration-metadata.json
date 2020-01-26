@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "blizzard.username",
+      "type": "java.lang.String",
+      "description": "Username for blizzard API."
+    },
+    {
+      "name": "blizzard.password",
+      "type": "java.lang.String",
+      "description": "Password for blizzard API."
+    }
+  ]
+}

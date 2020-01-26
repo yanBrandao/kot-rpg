@@ -2,8 +2,8 @@ package br.com.woodriver.rpg.gateway.repository
 
 
 import br.com.woodriver.rpg.domains.Player
-import org.springframework.data.mongodb.repository.MongoRepository
+import org.springframework.data.jpa.repository.JpaRepository
 
-interface PlayerRepository : MongoRepository<Player, String> {
+interface PlayerRepository : JpaRepository<Player, Long> {
     fun findTop10ByOrderByLevelDesc() : List<Player>
 }

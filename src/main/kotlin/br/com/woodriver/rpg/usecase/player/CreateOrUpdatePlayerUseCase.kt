@@ -5,9 +5,9 @@ import br.com.woodriver.rpg.gateway.repository.PlayerRepository
 import org.springframework.stereotype.Component
 
 @Component
-class GetAllPlayers(val playerRepository: PlayerRepository) {
+class CreateOrUpdatePlayerUseCase(val playerRepository: PlayerRepository) {
 
-    fun execute(): List<Player>{
-        return playerRepository.findAll()
+    fun execute(newPlayer: Player) : Player{
+        return playerRepository.save(newPlayer)
     }
 }
