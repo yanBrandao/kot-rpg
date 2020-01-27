@@ -1,8 +1,14 @@
 package br.com.woodriver.rpg.domains
 
 import br.com.woodriver.rpg.domains.types.AbilityType
+import org.springframework.data.mongodb.core.mapping.Document
+import javax.persistence.Id
 
-class Ability(val key: String,
+@Document(collection = "ability")
+data class Ability(
               val name: String,
-              val type: AbilityType) {
+              val typeAbility: AbilityType) {
+
+    @Id
+    val id: String = ""
 }
