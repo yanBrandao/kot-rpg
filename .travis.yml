@@ -1,19 +1,21 @@
 language: java
-
 jdk:
-  - openjdk8
-
+- openjdk8
 cache:
   directories:
-  - .autoconf
-  - $HOME/.m2
-
+  - ".autoconf"
+  - "$HOME/.m2"
 script:
+  - ./gradlew sonarqube
   - gradle assemble
-
 branches:
   only:
-    - develop
-
+  - develop
 after_success:
-  - ./gradlew test jacocoTestReport coveralls
+- "./gradlew test jacocoTestReport coveralls"
+
+addons:
+  sonarcloud:
+    organization: "yanbrandao"
+    token:
+        secure: YO5ILsMkBr0KqpnynDYpGjZVcD782k6wP8T75caHixz8V8AVS49mIiFVvekgZUHQ++sTGGvBifO3mkDGFR5M5+3VCTqc3fMIVcbhW3gyQJgE3dA/bWC0usoB9WdNYO4VbUKcaGhBLYY/ksS//YgKhpj8Pnw90LdbjymfQjqUTapEjegiFDB8BER2zfa5G6vUQu0Rqeuej/RxoIfGU4lkrC/8Gli01laYcr/QCV3yTmIsHUVHr6wkLEx6Swo3MTGcd2kg4wgVJWLRyTJmS4oTetFDPgeqXZqaUCHWFoWUatPlKDD/o5xwa3m64eWBPqsA+0FMz7W4pdAKX8x97ISr6SbatptW+sBaqqRAgQvqUptJ1cYq4iHfdYNuBSTaPnziRT5Uz0tbGqB5U79Vey25lhKjvdx5Q3umg9S94ML+WTtXifcnLwY1hpvqpxW5Xt8RMWNY0zA0zA+tKCWNXLgKTbiCWemWcNSGa0r1bprIDNarVuII5k6Jg71+WeWXsGh/sWV1HavUSeYcyRQM1qqZZLSW8S/0dtAlyfcYdabNd27mcz/Mf6lfPqPqGYg06z95M5HsEH/YG2YbsqrRyj0BcWFxLj7nmMFoqoaaaaYSEHyVfL/LzlxsJUKLcDhKsGvxiPOe2hOxJLv6nYi69s6UEMvbtG7yLk408PTHDI7KuB8=

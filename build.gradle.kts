@@ -8,6 +8,7 @@ plugins {
 	kotlin("jvm") version "1.3.61"
 	kotlin("plugin.spring") version "1.3.61"
 	id ("com.github.kt3k.coveralls") version "2.9.0"
+	id ("org.sonarqube") version "2.8"
 }
 
 group = "com.example"
@@ -73,12 +74,9 @@ coveralls {
 	sourceDirs.add("src/main/kotlin")
 	jacocoReportPath = "${buildDir}/jacocoReport/jacocoReport.xml"
 }
-//
-//tasks.bootRun {
-//	if (!(project.hasProperty("USERNAME") &&
-//		  project.hasProperty("PASSWORD") &&
-//		  project.hasProperty("DBPASSWORD"))) {
-//		throw InvalidUserDataException("Cannot run application without required arguments")
-//	}
-//
-//}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "yanBrandao_kot-rpg"
+  }
+}
