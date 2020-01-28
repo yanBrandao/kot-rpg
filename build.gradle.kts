@@ -77,6 +77,6 @@ coveralls {
 
 sonarqube {
   properties {
-    property "sonar.projectKey", "yanBrandao_kot-rpg"
+    property("sonar.projectKey", "yanBrandao_kot-rpg")
   }
 }
