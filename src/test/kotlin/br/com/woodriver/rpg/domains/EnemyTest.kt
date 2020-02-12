@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test
 class EnemyTest {
 
     @Test fun dropItemWhenEnemyDie(){
-        val bone = Item(1L, "Bone", 20.0, 1.0, PositionType.NONE, RarityType.COMMON, listOf())
-        val sword = Item(2L, "Sword", 120.0, 100.0, PositionType.LEFT_HAND, RarityType.COMMON, listOf())
+        val bone = Item(1L, "Bone", 20.0, 1.0, PositionType.NONE, RarityType.COMMON, "")
+        val sword = Item(2L, "Sword", 120.0, 100.0, PositionType.LEFT_HAND, RarityType.COMMON, "")
         val itemToDrop: MutableList<Item> = arrayListOf()
         itemToDrop.add(bone)
         itemToDrop.add(sword)
