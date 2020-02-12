@@ -2,23 +2,14 @@ package br.com.woodriver.rpg.configuration
 
 import br.com.woodriver.rpg.domains.OAuthBlizzard
 import br.com.woodriver.rpg.gateway.client.BlizzardSTSClient
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import java.util.*
 
 @Configuration
-class BlizzardTokenConfiguration() {
-
-    @Autowired
-    lateinit var blizzardSTSClient: BlizzardSTSClient
-
+class BlizzardTokenConfiguration(val blizzardSTSClient: BlizzardSTSClient) {
     var token: OAuthBlizzard = OAuthBlizzard("", "", 0)
     var timeTokenRequested: Date = Date()
-
-    constructor(blizzardSTSClient: BlizzardSTSClient) : this(){
-        this.blizzardSTSClient = blizzardSTSClient
-    }
 
     @Bean
     fun getToken(): String {

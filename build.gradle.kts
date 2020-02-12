@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	jacoco
+	"java-library"
 	id("org.springframework.boot") version "2.2.2.RELEASE"
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
 	id("net.saliman.cobertura") version "3.0.0"
@@ -23,6 +24,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -31,6 +33,8 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("org.hsqldb:hsqldb")
+
 	implementation("org.postgresql:postgresql:9.4.1208")
 	implementation("io.springfox:springfox-swagger2:2.9.2")
 	implementation("io.springfox:springfox-swagger-ui:2.9.2")
@@ -40,9 +44,6 @@ dependencies {
 	implementation ("com.graphql-java:graphql-spring-boot-starter:5.0.2")
 	implementation ("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
 	implementation ("com.graphql-java:graphql-java-tools:5.2.4")
-	implementation ("org.springframework.boot:spring-boot-starter-data-mongodb")
-
-
 }
 
 tasks.withType<Test> {
@@ -77,6 +78,7 @@ coveralls {
 
 sonarqube {
   properties {
-    property("sonar.projectKey", "yanBrandao_kot-rpg")
+	  property("sonar.projectKey", "yanBrandao_kot-rpg")
+	  property("sonar.version", "${version} - ${Runtime.getRuntime()}")
   }
 }
