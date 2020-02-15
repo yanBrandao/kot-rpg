@@ -19,7 +19,7 @@ class ItemController(
     }
 
     @GetMapping(name = "Get all items")
-    fun getItems(pageable: Pageable): Page<Item> {
+    fun getItems(pageable: Pageable): Page<Item>? {
         return getAllPaginatedUseCase.execute(pageable)
     }
 }

@@ -6,19 +6,21 @@ import br.com.woodriver.rpg.domains.BlizzardItemDetail
 import br.com.woodriver.rpg.domains.Item
 import br.com.woodriver.rpg.domains.types.PositionType
 import br.com.woodriver.rpg.domains.types.RarityType
+import br.com.woodriver.rpg.exceptions.IconEmptyException
 import br.com.woodriver.rpg.gateway.client.BlizzardAPIClient
 import br.com.woodriver.rpg.gateway.repository.ItemRepository
 import br.com.woodriver.rpg.usecases.item.CreateItemUseCase
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 
 @SpringBootTest
-class CreateItemUseCaseTests {
+class ItemUseCaseTests {
     lateinit var createItemUseCase: CreateItemUseCase
 
     @MockBean
@@ -57,6 +59,14 @@ class CreateItemUseCaseTests {
 
         Assertions.assertEquals("detail", itemCreated.icon)
 
+    }
+
+    @Test
+    fun `As a user, If I pass an empty icon value, it will throw an error`(){
+        val item = Item(1L, "Ring", 10.0,
+                10.0, PositionType.FINGERS,
+                RarityType.EPIC, "")
+        assertThrows<IconEmptyException> { createItemUseCase.execute(item) }
     }
 
 }
