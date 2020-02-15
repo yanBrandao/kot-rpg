@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class GetAllPaginatedUseCase(val itemRepository: ItemRepository) {
-    fun execute(pageable: Pageable): Page<Item> {
+    fun execute(pageable: Pageable): Page<Item>? {
         return itemRepository.findAll(pageable)
     }
 }
