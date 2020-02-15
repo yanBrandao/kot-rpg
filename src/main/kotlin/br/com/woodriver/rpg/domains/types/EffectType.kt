@@ -1,5 +1,7 @@
 package br.com.woodriver.rpg.domains.types
 
-enum class EffectType {
+import java.io.Serializable
+
+enum class EffectType: Serializable {
     BUFF, DEBUFF, AURA
 }

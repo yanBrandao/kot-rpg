@@ -1,10 +1,10 @@
 package br.com.woodriver.rpg.gateway.http
 
 import br.com.woodriver.rpg.domains.Player
-import br.com.woodriver.rpg.usecase.player.CreateOrUpdatePlayerUseCase
-import br.com.woodriver.rpg.usecase.player.DeletePlayerUseCase
-import br.com.woodriver.rpg.usecase.player.GetAllPlayersUseCase
-import br.com.woodriver.rpg.usecase.player.Top10BestPlayersUseCase
+import br.com.woodriver.rpg.usecases.player.CreateOrUpdatePlayerUseCase
+import br.com.woodriver.rpg.usecases.player.DeletePlayerUseCase
+import br.com.woodriver.rpg.usecases.player.GetAllPlayersUseCase
+import br.com.woodriver.rpg.usecases.player.Top10BestPlayersUseCase
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -31,7 +31,7 @@ class PlayerController(val top10BestPlayersUseCase: Top10BestPlayersUseCase,
 
     @PutMapping
     fun update(@RequestBody player: Player): Player{
-        return createOrUpdatePlayerUseCase.execute(player)
+        return createOrUpdatePlayerUseCase.execute(player, true)
     }
 
     @DeleteMapping("/{key}")
