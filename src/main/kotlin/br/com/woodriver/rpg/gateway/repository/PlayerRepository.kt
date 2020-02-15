@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface PlayerRepository : JpaRepository<Player, Long> {
     fun findTop10ByOrderByLevelDesc() : List<Player>
+    fun findFirstByKey(key: Long): Player?
 }

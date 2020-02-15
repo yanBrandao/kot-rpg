@@ -1,10 +1,8 @@
 package br.com.woodriver.rpg.gateway.http
 
-import br.com.woodriver.rpg.domains.BlizzardItem
 import br.com.woodriver.rpg.domains.Item
-import br.com.woodriver.rpg.usecase.item.CreateItemUseCase
-import br.com.woodriver.rpg.usecase.item.GetAllPaginatedUseCase
-import br.com.woodriver.rpg.usecase.item.GetBlizzardItemsUseCase
+import br.com.woodriver.rpg.usecases.item.CreateItemUseCase
+import br.com.woodriver.rpg.usecases.item.GetAllPaginatedUseCase
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.*
@@ -13,13 +11,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("items")
 class ItemController(
         val getAllPaginatedUseCase: GetAllPaginatedUseCase,
-        val createItemUseCase: CreateItemUseCase,
-        val getBlizzardItemsUseCase: GetBlizzardItemsUseCase) {
-
-    @GetMapping("/blizzard/{itemId}")
-    fun item(@PathVariable itemId: String): BlizzardItem{
-        return getBlizzardItemsUseCase.execute(itemId)
-    }
+        val createItemUseCase: CreateItemUseCase) {
 
     @PostMapping(name = "Create an item")
     fun postItem(@RequestBody item: Item): Item{
