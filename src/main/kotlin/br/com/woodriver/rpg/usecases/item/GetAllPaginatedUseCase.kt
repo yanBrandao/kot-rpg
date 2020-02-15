@@ -1,4 +1,4 @@
-package br.com.woodriver.rpg.usecase.item
+package br.com.woodriver.rpg.usecases.item
 
 import br.com.woodriver.rpg.domains.Item
 import br.com.woodriver.rpg.gateway.repository.ItemRepository
