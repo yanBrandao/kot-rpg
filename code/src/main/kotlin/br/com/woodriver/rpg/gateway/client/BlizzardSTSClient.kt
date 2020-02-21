@@ -5,7 +5,7 @@ import br.com.woodriver.rpg.domains.OAuthBlizzard
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.PostMapping
 
-@FeignClient(value = "blizzard", url = "\${blizzard.host}", configuration = [BlizzardClientConfiguration::class])
+@FeignClient(value = "blizzard", url = "\${blizzard.host-token}", configuration = [BlizzardClientConfiguration::class])
 interface BlizzardSTSClient {
 
     @PostMapping(value = [])

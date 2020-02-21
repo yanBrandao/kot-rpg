@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component
 class Top10BestPlayersUseCase(val playerRepository: PlayerRepository) {
 
     fun execute() : List<Player>{
-        return playerRepository.findTop10ByOrderByLevelDesc()
+        return playerRepository.findTop10ByOrderByExpDesc()
     }
 }

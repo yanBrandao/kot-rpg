@@ -3,27 +3,24 @@ package br.com.woodriver.rpg.domains
 import br.com.woodriver.rpg.domains.types.PositionType
 import br.com.woodriver.rpg.domains.types.RarityType
 import javax.persistence.*
-import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "KOR_ITEM")
-@SequenceGenerator(name = "ITM_ID_SEQ", initialValue = 1006, allocationSize = 100)
-class Item(
+class Item() {
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ITM_ID_SEQ")
+        @GeneratedValue
         @Column(name = "ITM_ID", unique = true, nullable = false)
-        var key: Long,
+        var key: Long = 0
         @Column(name = "ITM_NAME")
-        val name: String,
+        val name: String = "No Name"
         @Column(name = "ITM_WEIGHT")
-        val weight: Double,
+        val weight: Double = 1.0
         @Column(name = "ITM_PRICE")
-        val price: Double,
+        val price: Double = 1.0
         @Column(name = "ITM_POSITION")
-        val position: PositionType,
+        val position: PositionType = PositionType.NONE
         @Column(name = "ITM_RARITY")
-        val rarity: RarityType,
+        val rarity: RarityType = RarityType.COMMON
         @Column(name = "ITM_ICON")
-        var icon: String) {
+        var icon: String = "No Icon"
 }
