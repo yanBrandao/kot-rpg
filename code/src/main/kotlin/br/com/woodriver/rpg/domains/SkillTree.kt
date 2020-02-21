@@ -1,12 +1,10 @@
 package br.com.woodriver.rpg.domains
 
-import br.com.woodriver.rpg.domains.compositekeys.BagId
 import br.com.woodriver.rpg.domains.compositekeys.SkillTreeId
 import javax.persistence.Column
 import javax.persistence.EmbeddedId
 import javax.persistence.Entity
 import javax.persistence.Table
-import javax.validation.constraints.Min
 
 @Entity
 @Table(name = "KOR_SKILL_TREE")
