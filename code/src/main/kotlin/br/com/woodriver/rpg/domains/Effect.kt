@@ -20,4 +20,18 @@ class Effect() {
     var range: Double = 1.0
     @Column(name = "EFC_DURATION")
     var duration: Double = 1.0
+
+    constructor(key: Long,
+                name: String,
+                value: Double,
+                type: EffectType,
+                range: Double,
+                duration: Double) : this(){
+        this.key = key
+        this.name = name
+        this.value = value
+        this.type = type
+        this.range = range
+        this.duration = duration
+    }
 }
