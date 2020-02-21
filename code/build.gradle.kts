@@ -44,6 +44,10 @@ dependencies {
 	implementation ("com.graphql-java:graphql-spring-boot-starter:5.0.2")
 	implementation ("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
 	implementation ("com.graphql-java:graphql-java-tools:5.2.4")
+	implementation("io.opentracing.contrib:opentracing-spring-cloud-starter:0.4.0")
+	implementation("io.opentracing.contrib:opentracing-spring-jaeger-cloud-starter:2.0.3")
+
+
 }
 
 tasks.withType<Test> {

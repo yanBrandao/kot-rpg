@@ -2,10 +2,10 @@ package br.com.woodriver.rpg.usecases
 
 import br.com.woodriver.rpg.configuration.BlizzardTokenConfiguration
 import br.com.woodriver.rpg.domains.Effect
-import br.com.woodriver.rpg.domains.Equipment
+import br.com.woodriver.rpg.domains.Bag
 import br.com.woodriver.rpg.domains.Item
 import br.com.woodriver.rpg.domains.Player
-import br.com.woodriver.rpg.domains.compositekeys.EquipmentId
+import br.com.woodriver.rpg.domains.compositekeys.BagId
 import br.com.woodriver.rpg.domains.types.EffectType
 import br.com.woodriver.rpg.domains.types.PositionType
 import br.com.woodriver.rpg.domains.types.RarityType
@@ -26,7 +26,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.doNothing
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.util.Assert
+import java.math.BigDecimal
 
 @SpringBootTest
 class PlayerUseCaseTests {
@@ -42,9 +42,6 @@ class PlayerUseCaseTests {
     @Mock
     lateinit var playerRepository: PlayerRepository
 
-    @MockBean
-    lateinit var blizzardTokenConfiguration: BlizzardTokenConfiguration
-
     @BeforeEach
     fun setup(){
         createOrUpdatePlayerUseCase = CreateOrUpdatePlayerUseCase(playerRepository)
@@ -53,28 +50,28 @@ class PlayerUseCaseTests {
         deletePlayerUseCase = DeletePlayerUseCase(playerRepository)
 
         var listPlayer: ArrayList<Player> = arrayListOf()
-        var player = Player(1L, "Yan", "yan@zup.com.br", 1, listOf(), listOf())
+        var player = Player(1L, "Yan", "yan@zup.com.br", 1.0, listOf(), listOf())
         listPlayer.add(player)
         `when`(playerRepository.save<Player?>(Mockito.any())).thenReturn(player)
         `when`(playerRepository.findAll()).thenReturn(listPlayer)
-        `when`(playerRepository.findTop10ByOrderByLevelDesc()).thenReturn(listPlayer)
+        `when`(playerRepository.findTop10ByOrderByExpDesc()).thenReturn(listPlayer)
         doNothing().`when`(playerRepository).delete(Mockito.any())
     }
 
     @Test
     fun `As a player, I want to save me in database`(){
         var listEffect = arrayListOf<Effect>()
-        var listEquipment = arrayListOf<Equipment>()
+        var listEquipment = arrayListOf<Bag>()
         val item = Item(1L, "Ring", 100.0, 100.0, PositionType.RIGHT_EAR, RarityType.LEGENDARY, "0")
         val otherItem = Item(2L, "Earring", 100.0, 100.0, PositionType.LEFT_ARM, RarityType.COMMON, "0")
-        val player = Player(1L, "Yan", "yan@zup.com.br", 1, listEffect, listEquipment)
-        val equipmentId = EquipmentId(player, item)
-        val otherEquipmentId = EquipmentId(player, otherItem)
-        var equipment = Equipment(equipmentId, PositionType.RIGHT_EAR)
-        val otherSameEquipment = Equipment(equipmentId, PositionType.RIGHT_EAR)
-        val otherEquipment = Equipment(equipmentId, PositionType.LEFT_ARM)
-        val otherEquipmentWithOtherId = Equipment(otherEquipmentId, PositionType.LEFT_ARM)
-        val expectedHashCode = 31 * equipmentId.hashCode() + equipment.positionType.hashCode()
+        val player = Player(1L, "Yan", "yan@zup.com.br", 1.0, listEffect, listEquipment)
+        val equipmentId = BagId(player, item)
+        val otherEquipmentId = BagId(player, otherItem)
+        var equipment = Bag(equipmentId, true)
+        val otherSameEquipment = Bag(equipmentId, true)
+        val otherEquipment = Bag(equipmentId, false)
+        val otherEquipmentWithOtherId = Bag(otherEquipmentId, true)
+        val expectedHashCode = 31 * equipmentId.hashCode() + equipment.isEquipped.hashCode()
         var effect = Effect(1L, "Speed", 120.0, EffectType.BUFF, 100.0, 100.0, listOf())
         listEquipment.add(equipment)
         listEffect.add(effect)
@@ -92,28 +89,27 @@ class PlayerUseCaseTests {
         Assertions.assertEquals(100.0, player.effects[0].duration)
         Assertions.assertEquals(0, player.effects[0].players.size)
 
-        Assertions.assertEquals(1, player.equipment.size)
-        Assertions.assertEquals(PositionType.RIGHT_EAR, player.equipment[0].positionType)
-        Assertions.assertTrue(player.equipment[0] == equipment)
-        Assertions.assertFalse(player.equipment[0].equals(otherEquipment))
-        Assertions.assertFalse(player.equipment[0].equals(otherEquipmentWithOtherId))
-        Assertions.assertTrue(player.equipment[0].equals(otherSameEquipment))
-        Assertions.assertFalse(player.equipment[0].equals(null))
-        Assertions.assertEquals(equipmentId, player.equipment[0].equipmentId)
+        Assertions.assertEquals(1, player.bags.size)
+        Assertions.assertTrue(player.bags[0] == equipment)
+        Assertions.assertFalse(player.bags[0].equals(otherEquipment))
+        Assertions.assertFalse(player.bags[0].equals(otherEquipmentWithOtherId))
+        Assertions.assertTrue(player.bags[0].equals(otherSameEquipment))
+        Assertions.assertFalse(player.bags[0].equals(null))
+        Assertions.assertEquals(equipmentId, player.bags[0].bagId)
 
-        Assertions.assertEquals(expectedHashCode, player.equipment[0].hashCode())
+        Assertions.assertEquals(expectedHashCode, player.bags[0].hashCode())
     }
 
     @Test
     fun `As a user to update an attribute, I need to pass the Key`(){
-        val player = Player(0L, "Yan", "yan@zup.com.br", 1, listOf(), listOf())
+        val player = Player(0L, "Yan", "yan@zup.com.br", 1.0, listOf(), listOf())
         assertThrows<KeyCannotBeZeroException> { createOrUpdatePlayerUseCase.execute(player, true) }
     }
 
     @Test
     fun `As a user, I cannot create a player with same key value`(){
-        `when`(playerRepository.findFirstByKey(Mockito.anyLong())).thenReturn(Player(1L, "name", "email", 1, listOf(), listOf()))
-        val player = Player(0L, "Yan", "yan@zup.com.br", 1, listOf(), listOf())
+        `when`(playerRepository.findFirstByKey(Mockito.anyLong())).thenReturn(Player(1L, "name", "email", 1.0, listOf(), listOf()))
+        val player = Player(0L, "Yan", "yan@zup.com.br", 1.0, listOf(), listOf())
         assertThrows<PlayerAlreadyCreatedException> { createOrUpdatePlayerUseCase.execute(player) }
     }
 
