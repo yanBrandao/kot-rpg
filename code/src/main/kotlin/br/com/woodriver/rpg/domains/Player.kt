@@ -1,8 +1,6 @@
 package br.com.woodriver.rpg.domains
 
 import com.sun.istack.NotNull
-import java.io.Serializable
-import java.math.BigDecimal
 import javax.persistence.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.Min

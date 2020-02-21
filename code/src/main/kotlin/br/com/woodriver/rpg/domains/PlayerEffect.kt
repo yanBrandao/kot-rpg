@@ -1,11 +1,9 @@
 package br.com.woodriver.rpg.domains
 
 import br.com.woodriver.rpg.domains.compositekeys.PlayerEffectId
-import javax.persistence.Column
 import javax.persistence.EmbeddedId
 import javax.persistence.Entity
 import javax.persistence.Table
-import javax.validation.constraints.Min
 
 @Entity
 @Table(name = "KOR_PLAYER_EFFECT")
