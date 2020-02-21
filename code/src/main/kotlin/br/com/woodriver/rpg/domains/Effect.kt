@@ -5,19 +5,19 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "KOR_EFFECT")
-class Effect(@Id
-@Column(name = "EFC_ID")
-             val key: Long,
-             @Column(name = "EFC_NAME")
-             val name:String,
-             @Column(name = "EFC_VALUE")
-             val value: Double,
-             @Column(name = "EFC_TYPE")
-             val type: EffectType,
-             @Column(name = "EFC_RANGE")
-             val range: Double,
-             @Column(name = "EFC_DURATION")
-             val duration: Double,
-             @ManyToMany(mappedBy = "effects")
-             var players: List<Player> = mutableListOf()) {
+class Effect() {
+    @Id
+    @GeneratedValue
+    @Column(name = "EFC_ID")
+    var key: Long = 0
+    @Column(name = "EFC_NAME")
+    var name: String = "No Name"
+    @Column(name = "EFC_VALUE")
+    var value: Double = 1.0
+    @Column(name = "EFC_TYPE")
+    var type: EffectType = EffectType.BUFF
+    @Column(name = "EFC_RANGE")
+    var range: Double = 1.0
+    @Column(name = "EFC_DURATION")
+    var duration: Double = 1.0
 }

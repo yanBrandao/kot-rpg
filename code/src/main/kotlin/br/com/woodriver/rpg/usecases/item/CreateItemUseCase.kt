@@ -18,6 +18,6 @@ class CreateItemUseCase(val itemRepository: ItemRepository,
         item.icon = blizzardAPIClient.getItemIcon(item.icon, "Bearer " +
                 blizzardTokenConfiguration.getToken())
                 .assets[0].value
-        return itemRepository.save(item);
+        return itemRepository.save(item)
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
+import java.math.BigDecimal
 
 
 @SpringBootTest
@@ -40,7 +41,7 @@ fun `Controller should return players`(){
 
     @Test
     fun `Controller should create and delete a player`(){
-        var player = Player(2L, "Yan", "yan@zup.com.br", 1, listOf(), listOf())
+        var player = Player(2L, "Yan", "yan@zup.com.br", 0.0, listOf(), listOf())
         mockMvc.perform(post("/players/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
@@ -56,7 +57,7 @@ fun `Controller should return players`(){
 
     @Test
     fun `Controller should create a player`(){
-        var player = Player(99L, "Yan", "yan@zup.com.br", 1, listOf(), listOf())
+        var player = Player(99L, "Yan", "yan@zup.com.br", 0.0, listOf(), listOf())
         player.key = 101
         mockMvc.perform(post("/players/")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -69,9 +70,9 @@ fun `Controller should return players`(){
     }
     @Test
     fun `Controller should update a player`(){
-        var player = Player(1L, "Yan", "yan@zup.com.br", 1, listOf(), listOf())
+        var player = Player(1L, "Yan", "yan@zup.com.br", 0.0, listOf(), listOf())
         player.name = "YanZica"
-        player.level = 99
+        player.exp = 99.0
         player.email = "yan@yan.com"
 
         mockMvc.perform(put("/players/")

@@ -4,7 +4,7 @@
 [![Hits-of-Code](https://hitsofcode.com/github/yanBrandao/kot-rpg)](https://hitsofcode.com/view/github/yanBrandao/kot-rpg)
 
 KOT-RPG is a REST API developed in Spring-boot Java using Clean Architecture as code style. The main goal of this API is to store a player information based in a RPG game. 
-This is a living project, so if you want to use o change something, just send me and email.
+This is a living project, so if you want to use or change something, just send me an email.
 
 
 ## UML
@@ -12,7 +12,7 @@ This is a living project, so if you want to use o change something, just send me
 Actually there's only three main classes, that represent player equipments, and players status afflicted by game effects, it can be a positive effect like a `BUFF`, or negative effect `DEBUFF`, but there's another type of effect called `AURA` that have specified range, all others effects has 0 of range.
 Another important thing is that item cannot be placed in a different position in player, so for this when player have an equipment, the item position need to be the same as equipped. 
 
-![er-diagram](./assets/er_diagram.png)
+![er-diagram-v2](./assets/er_diagram_v2.png)
 
 
 ## Running the project
