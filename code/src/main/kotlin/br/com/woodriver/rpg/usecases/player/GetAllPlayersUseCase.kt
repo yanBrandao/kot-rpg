@@ -1,6 +1,5 @@
 package br.com.woodriver.rpg.usecases.player
 
-import br.com.woodriver.rpg.domains.Player
 import br.com.woodriver.rpg.gateway.dto.PlayerDTO
 import br.com.woodriver.rpg.gateway.mapper.PlayerMapper
 import br.com.woodriver.rpg.gateway.repository.PlayerRepository
