@@ -12,15 +12,27 @@ class Item() {
         @Column(name = "ITM_ID", unique = true, nullable = false)
         var key: Long = 0
         @Column(name = "ITM_NAME")
-        val name: String = "No Name"
+        var name: String = "No Name"
         @Column(name = "ITM_WEIGHT")
-        val weight: Double = 1.0
+        var weight: Double = 1.0
         @Column(name = "ITM_PRICE")
-        val price: Double = 1.0
+        var price: Double = 1.0
         @Column(name = "ITM_POSITION")
-        val position: PositionType = PositionType.NONE
+        var position: PositionType = PositionType.NONE
         @Column(name = "ITM_RARITY")
-        val rarity: RarityType = RarityType.COMMON
+        var rarity: RarityType = RarityType.COMMON
         @Column(name = "ITM_ICON")
         var icon: String = "No Icon"
+
+        constructor(key: Long, name: String, weight: Double,
+                    price: Double, position: PositionType, rarity: RarityType,
+                    icon: String) : this(){
+                this.key = key
+                this.name = name
+                this.weight = weight
+                this.price = price
+                this.position = position
+                this.rarity = rarity
+                this.icon = icon
+        }
 }

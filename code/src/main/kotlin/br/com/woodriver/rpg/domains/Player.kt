@@ -27,19 +27,19 @@ class Player() {
             cascade = [CascadeType.ALL],
             orphanRemoval = true
     )
-    val effects: List<PlayerEffect> = listOf()
+    var effects: List<PlayerEffect> = listOf()
     @OneToMany(
             mappedBy = "bagId.bagPlrId",
             cascade = [CascadeType.ALL],
             orphanRemoval = true
     )
-    val bags: List<Bag> = listOf()
+    var bags: List<Bag> = listOf()
     @OneToMany(
             mappedBy = "skillTreeId.sktPlrId",
             cascade = [CascadeType.ALL],
             orphanRemoval = true
     )
-    val skillTree: List<SkillTree> = listOf()
+    var skillTree: List<SkillTree> = listOf()
 
 
     fun playerLevel(): Double {
@@ -56,5 +56,21 @@ class Player() {
 
     companion object {
         const val BASE_EXP = 100.00
+    }
+
+    constructor(key: Long,
+                name: String,
+                email: String,
+                exp: Double,
+                effects: List<PlayerEffect>,
+                bags: List<Bag>,
+                skillTree: List<SkillTree>) : this(){
+        this.key = key
+        this.name = name
+        this.email = email
+        this.exp = exp
+        this.effects = effects
+        this.bags = bags
+        this.skillTree = skillTree
     }
 }
