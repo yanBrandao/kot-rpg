@@ -9,15 +9,21 @@ import javax.validation.constraints.Min
 
 @Entity
 @Table(name = "KOR_BAG")
-data class Bag(
-        @EmbeddedId
-        var bagId: BagId,
-        @Column(name = "BAG_IS_EQUIPPED")
-        var isEquipped: Boolean = false,
-        @Min(1)
-        @Column(name = "BAG_QUANTITY")
-        var quantity: Int = 1
-) {
+class Bag() {
+     @EmbeddedId
+     lateinit var bagId: BagId
+     @Column(name = "BAG_IS_EQUIPPED")
+     var isEquipped: Boolean = false
+     @Min(1)
+     @Column(name = "BAG_QUANTITY")
+     var quantity: Int = 1
+
+    constructor(bagId: BagId, isEquipped: Boolean, quantity: Int) : this(){
+        this.bagId = bagId
+        this.isEquipped = isEquipped
+        this.quantity = quantity
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

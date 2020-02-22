@@ -16,6 +16,12 @@ class SkillTree() {
     @Column(name = "SKT_RUNE")
     var rune: String = "None"
 
+    constructor(skillTreeId: SkillTreeId, level: Int, rune: String) : this(){
+        this.skillTreeId = skillTreeId
+        this.level = level
+        this.rune = rune
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
