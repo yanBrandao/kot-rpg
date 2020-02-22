@@ -84,5 +84,6 @@ sonarqube {
   properties {
 	  property("sonar.projectKey", "yanBrandao_kot-rpg")
 	  property("sonar.version", "${version} - ${Runtime.getRuntime()}")
+	  property("sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/jacocoReport/jacocoReport.xml")
   }
 }
