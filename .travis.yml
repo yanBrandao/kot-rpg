@@ -10,7 +10,7 @@ script:
   - gradle assemble
 branches:
   only:
-  - develop
+  - master
 after_success:
 - "./gradlew test jacocoTestReport coveralls"
 
