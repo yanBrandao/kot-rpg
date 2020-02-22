@@ -1,7 +1,7 @@
 package br.com.woodriver.rpg.gateway.http
 
 import br.com.woodriver.rpg.domains.Player
-import br.com.woodriver.rpg.gateway.dto.PlayerDTO
+import br.com.woodriver.rpg.gateway.dto.PlayerResponse
 import br.com.woodriver.rpg.usecases.player.CreateOrUpdatePlayerUseCase
 import br.com.woodriver.rpg.usecases.player.DeletePlayerUseCase
 import br.com.woodriver.rpg.usecases.player.GetAllPlayersUseCase
@@ -16,7 +16,7 @@ class PlayerController(val top10BestPlayersUseCase: Top10BestPlayersUseCase,
                        val getAllPlayersUseCase: GetAllPlayersUseCase) {
 
     @GetMapping
-    fun all(): List<PlayerDTO>{
+    fun all(): List<PlayerResponse>{
         return getAllPlayersUseCase.execute()
     }
 

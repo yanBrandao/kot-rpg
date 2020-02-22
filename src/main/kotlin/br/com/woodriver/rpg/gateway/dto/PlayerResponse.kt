@@ -5,7 +5,7 @@ import br.com.woodriver.rpg.domains.Effect
 import br.com.woodriver.rpg.domains.PlayerEffect
 import java.math.BigDecimal
 
-class PlayerDTO(){
+class PlayerResponse(){
     var key: Long = 0L
     var name: String = "No Name"
     var email: String = "a@a.com"
