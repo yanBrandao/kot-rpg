@@ -28,6 +28,7 @@ To run KOT-RPG project, I recommend to follow the steps below:
 ```ruby
  DB_HOST=localhost
  DB_USER=postgres;
+ DB_DATABASE=postgres;
  DB_PASS=your_password
  DB_PORT=your_port;
  
