@@ -1,6 +1,7 @@
 package br.com.woodriver.rpg.http
 
 import br.com.woodriver.rpg.domains.Player
+import br.com.woodriver.rpg.domains.types.RaceType
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hamcrest.core.StringContains.containsString
 import org.junit.jupiter.api.Test
@@ -41,7 +42,7 @@ fun `Controller should return players`(){
 
     @Test
     fun `Controller should create and delete a player`(){
-        var player = Player(2L, "Yan", "yan@zup.com.br", 0.0, listOf(), listOf(), listOf())
+        var player = Player(2L, "Yan",1L, "yan@zup.com.br", RaceType.ANDROID, 0.0, listOf(), listOf(), listOf())
         mockMvc.perform(post("/players/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
@@ -57,7 +58,7 @@ fun `Controller should return players`(){
 
     @Test
     fun `Controller should create a player`(){
-        var player = Player(99L, "Yan", "yan@zup.com.br", 0.0, listOf(), listOf(), listOf())
+        var player = Player(99L, "Yan",1L, "yan@zup.com.br", RaceType.CENTAUR, 0.0, listOf(), listOf(), listOf())
         player.key = 101
         mockMvc.perform(post("/players/")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -70,7 +71,7 @@ fun `Controller should return players`(){
     }
     @Test
     fun `Controller should update a player`(){
-        var player = Player(1L, "Yan", "yan@zup.com.br", 0.0, listOf(), listOf(), listOf())
+        var player = Player(1L, "Yan",1L, "yan@zup.com.br", RaceType.DARK_ELF, 0.0, listOf(), listOf(), listOf())
         player.name = "YanZica"
         player.exp = 99.0
         player.email = "yan@yan.com"

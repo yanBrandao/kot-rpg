@@ -1,5 +1,6 @@
 package br.com.woodriver.rpg.domains
 
+import br.com.woodriver.rpg.domains.types.RaceType
 import com.sun.istack.NotNull
 import javax.persistence.*
 import javax.validation.constraints.Email
@@ -16,9 +17,14 @@ class Player() {
     @Column(name = "PLR_NAME")
     var name: String = "No Name"
     @NotNull
+    @Column(name = "PLR_USER")
+    var userId: Long = 1L
+    @NotNull
     @Column(name = "PLR_EMAIL")
     @Email
     var email: String = "a@a.com"
+    @Column(name = "PLR_RACE")
+    var race: RaceType = RaceType.HUMAN
     @Column(name = "PLR_EXPERIENCE")
     @Min(0)
     var exp: Double = 0.0
@@ -60,14 +66,18 @@ class Player() {
 
     constructor(key: Long,
                 name: String,
+                userId: Long,
                 email: String,
+                race: RaceType,
                 exp: Double,
                 effects: List<PlayerEffect>,
                 bags: List<Bag>,
                 skillTree: List<SkillTree>) : this(){
         this.key = key
         this.name = name
+        this.userId = userId
         this.email = email
+        this.race = race
         this.exp = exp
         this.effects = effects
         this.bags = bags

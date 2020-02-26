@@ -1,14 +1,10 @@
 package br.com.woodriver.rpg.usecases
 
-import br.com.woodriver.rpg.configuration.BlizzardTokenConfiguration
 import br.com.woodriver.rpg.domains.*
 import br.com.woodriver.rpg.domains.compositekeys.BagId
 import br.com.woodriver.rpg.domains.compositekeys.PlayerEffectId
 import br.com.woodriver.rpg.domains.compositekeys.SkillTreeId
-import br.com.woodriver.rpg.domains.types.AbilityType
-import br.com.woodriver.rpg.domains.types.EffectType
-import br.com.woodriver.rpg.domains.types.PositionType
-import br.com.woodriver.rpg.domains.types.RarityType
+import br.com.woodriver.rpg.domains.types.*
 import br.com.woodriver.rpg.exceptions.KeyCannotBeZeroException
 import br.com.woodriver.rpg.exceptions.PlayerAlreadyCreatedException
 import br.com.woodriver.rpg.gateway.repository.PlayerRepository
@@ -25,8 +21,6 @@ import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.doNothing
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
-import java.math.BigDecimal
 
 @SpringBootTest
 class PlayerUseCaseTests {
@@ -50,7 +44,7 @@ class PlayerUseCaseTests {
         deletePlayerUseCase = DeletePlayerUseCase(playerRepository)
 
         var listPlayer: ArrayList<Player> = arrayListOf()
-        var player = Player(1L, "Yan", "yan@zup.com.br", 1.0, listOf(), listOf(), listOf())
+        var player = Player(1L, "Yan", 1L, "yan@zup.com.br", RaceType.DRAGON_BORN, 1.0, listOf(), listOf(), listOf())
         listPlayer.add(player)
         `when`(playerRepository.save<Player?>(Mockito.any())).thenReturn(player)
         `when`(playerRepository.findAll()).thenReturn(listPlayer)
@@ -65,7 +59,7 @@ class PlayerUseCaseTests {
         var listSkillTree = arrayListOf<SkillTree>()
         val item = Item(1L, "Ring", 100.0, 100.0, PositionType.RIGHT_EAR, RarityType.LEGENDARY, "0")
         val otherItem = Item(2L, "Earring", 100.0, 100.0, PositionType.LEFT_ARM, RarityType.COMMON, "0")
-        val player = Player(1L, "Yan", "yan@zup.com.br", 1.0, listEffect, listEquipment, listSkillTree)
+        val player = Player(1L, "Yan", 1L, "yan@zup.com.br", RaceType.DWARF, 1.0, listEffect, listEquipment, listSkillTree)
         val equipmentId = BagId(player, item)
         val otherEquipmentId = BagId(player, otherItem)
         var clazz = Clazz()
@@ -143,14 +137,14 @@ class PlayerUseCaseTests {
 
     @Test
     fun `As a user to update an attribute, I need to pass the Key`() {
-        val player = Player(0L, "Yan", "yan@zup.com.br", 1.0, listOf(), listOf(), listOf())
+        val player = Player(0L, "Yan", 1L, "yan@zup.com.br", RaceType.GARGOYLE, 1.0, listOf(), listOf(), listOf())
         assertThrows<KeyCannotBeZeroException> { createOrUpdatePlayerUseCase.execute(player, true) }
     }
 
     @Test
     fun `As a user, I cannot create a player with same key value`() {
-        `when`(playerRepository.findFirstByKey(Mockito.anyLong())).thenReturn(Player(1L, "name", "email", 1.0, listOf(), listOf(), listOf()))
-        val player = Player(0L, "Yan", "yan@zup.com.br", 1.0, listOf(), listOf(), listOf())
+        `when`(playerRepository.findFirstByKey(Mockito.anyLong())).thenReturn(Player(1L, "name", 1L, "email", RaceType.GIANT, 1.0, listOf(), listOf(), listOf()))
+        val player = Player(0L, "Yan", 1L, "yan@zup.com.br", RaceType.GOBLIN, 1.0, listOf(), listOf(), listOf())
         assertThrows<PlayerAlreadyCreatedException> { createOrUpdatePlayerUseCase.execute(player) }
     }
 

@@ -16,7 +16,7 @@ class LoginUserUseCase(val userRepository: UserRepository) {
             val decodedBytes: ByteArray = Base64.getDecoder().decode(user.password)
             val decodedString = String(decodedBytes)
             if (password == decodedString)
-                return "Login successfully!"
+                return user.key.toString()
             else
                 throw UsernameOrPasswordException("Password Invalid")
         } catch (ex: EmptyResultDataAccessException){
