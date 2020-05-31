@@ -1,6 +1,6 @@
 package br.com.woodriver.rpg.gateway.client
 
-import br.com.woodriver.rpg.domains.BlizzardItem
+import br.com.woodriver.rpg.domain.BlizzardItem
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

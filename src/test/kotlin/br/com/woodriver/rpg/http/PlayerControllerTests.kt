@@ -1,7 +1,7 @@
 package br.com.woodriver.rpg.http
 
-import br.com.woodriver.rpg.domains.Player
-import br.com.woodriver.rpg.domains.types.RaceType
+import br.com.woodriver.rpg.TestUtils.Companion.createPlayerWithCustomRace
+import br.com.woodriver.rpg.domain.utils.types.RaceType
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hamcrest.core.StringContains.containsString
 import org.junit.jupiter.api.Test
@@ -11,10 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
-import java.math.BigDecimal
 
 
 @SpringBootTest
@@ -24,16 +23,16 @@ class PlayerControllerTests() {
     @Autowired
     lateinit var mockMvc: MockMvc
 
-@Test
-fun `Controller should return players`(){
-    mockMvc.perform(get("/players/")).andDo(print())
-            .andExpect(status().isOk)
-            .andExpect(content().string(containsString("")))
-}
+    @Test
+    fun `Controller should return players`() {
+        mockMvc.perform(get("/players/")).andDo(print())
+                .andExpect(status().isOk)
+                .andExpect(content().string(containsString("")))
+    }
 
 
     @Test
-    fun `Controller should return top10 players`(){
+    fun `Controller should return top10 players`() {
         mockMvc.perform(get("/players/top10")).andDo(print())
                 .andExpect(status().isOk)
                 .andExpect(content().string(containsString("")))
@@ -41,8 +40,8 @@ fun `Controller should return players`(){
 
 
     @Test
-    fun `Controller should create and delete a player`(){
-        var player = Player(2L, "Yan",1L, "yan@zup.com.br", RaceType.ANDROID, 0.0, listOf(), listOf(), listOf())
+    fun `Controller should create and delete a player`() {
+        var player = createPlayerWithCustomRace(RaceType.ANDROID)
         mockMvc.perform(post("/players/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
@@ -57,8 +56,8 @@ fun `Controller should return players`(){
     }
 
     @Test
-    fun `Controller should create a player`(){
-        var player = Player(99L, "Yan",1L, "yan@zup.com.br", RaceType.CENTAUR, 0.0, listOf(), listOf(), listOf())
+    fun `Controller should create a player`() {
+        var player = createPlayerWithCustomRace(RaceType.CENTAUR)
         player.key = 101
         mockMvc.perform(post("/players/")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -69,12 +68,12 @@ fun `Controller should return players`(){
                 .andExpect(content().string(containsString("")))
 
     }
+
     @Test
-    fun `Controller should update a player`(){
-        var player = Player(1L, "Yan",1L, "yan@zup.com.br", RaceType.DARK_ELF, 0.0, listOf(), listOf(), listOf())
+    fun `Controller should update a player`() {
+        val player = createPlayerWithCustomRace(RaceType.GOBLIN)
         player.name = "YanZica"
         player.exp = 99.0
-        player.email = "yan@yan.com"
 
         mockMvc.perform(put("/players/")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -85,5 +84,6 @@ fun `Controller should return players`(){
                 .andExpect(content().string(containsString("")))
 
     }
+
 
 }

@@ -1,12 +1,11 @@
 package br.com.woodriver.rpg.http
 
-import br.com.woodriver.rpg.configuration.BlizzardTokenConfiguration
-import br.com.woodriver.rpg.domains.BlizzardItem
-import br.com.woodriver.rpg.domains.BlizzardItemDetail
-import br.com.woodriver.rpg.domains.Item
-import br.com.woodriver.rpg.domains.types.PositionType
-import br.com.woodriver.rpg.domains.types.RarityType
-import br.com.woodriver.rpg.gateway.client.BlizzardAPIClient
+import br.com.woodriver.rpg.TestContext
+import br.com.woodriver.rpg.domain.BlizzardItem
+import br.com.woodriver.rpg.domain.BlizzardItemDetail
+import br.com.woodriver.rpg.domain.Item
+import br.com.woodriver.rpg.domain.utils.types.PositionType
+import br.com.woodriver.rpg.domain.utils.types.RarityType
 import br.com.woodriver.rpg.gateway.repository.ItemRepository
 import br.com.woodriver.rpg.usecases.item.CreateItemUseCase
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -27,10 +26,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class ItemControllerTests {
+class ItemControllerTests : TestContext() {
 
-        @Autowired
-        lateinit var mockMvc: MockMvc
+    @Autowired
+    lateinit var mockMvc: MockMvc
 
     @MockBean
     lateinit var createItemUseCase: CreateItemUseCase
@@ -38,20 +37,14 @@ class ItemControllerTests {
     @MockBean
     lateinit var itemRepository: ItemRepository
 
-    @MockBean
-    lateinit var blizzardAPIClient: BlizzardAPIClient
-
-    @MockBean
-    lateinit var blizzardTokenConfiguration: BlizzardTokenConfiguration
-
 
     @BeforeEach
-    fun setup(){
+    fun setup() {
         val blizzardItemDetail = BlizzardItemDetail("99", "detail")
         val blizzardItemDetails = arrayListOf<BlizzardItemDetail>()
         blizzardItemDetails.add(blizzardItemDetail)
         val blizzardItem = BlizzardItem("_link", blizzardItemDetails)
-        createItemUseCase =  CreateItemUseCase(itemRepository, blizzardAPIClient,
+        createItemUseCase = CreateItemUseCase(itemRepository, blizzardAPIClient,
                 blizzardTokenConfiguration)
         val item = Item(1L, "Ring", 100.0, 100.0, PositionType.RIGHT_EAR, RarityType.LEGENDARY, "0")
         `when`(blizzardAPIClient.getItemIcon(Mockito.anyString(), Mockito.anyString())).thenReturn(blizzardItem)
@@ -60,7 +53,7 @@ class ItemControllerTests {
 
 
     @Test
-    fun `Controller should return all items`(){
+    fun `Controller should return all items`() {
         mockMvc.perform(MockMvcRequestBuilders.get("/items/")
                 .header("offset", "0")
                 .header("pageNumber", "0")
@@ -68,14 +61,14 @@ class ItemControllerTests {
                 .header("paged", "0")
                 .header("sort.sorted", "0")
                 .header("unpaged", "0")
-                ).andDo(MockMvcResultHandlers.print())
+        ).andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk)
                 .andExpect(MockMvcResultMatchers.content().string(StringContains.containsString("")))
     }
 
 
     @Test
-    fun `Controller should create an item`(){
+    fun `Controller should create an item`() {
         val item = Item(1L, "Ring", 100.0, 100.0, PositionType.RIGHT_EAR, RarityType.LEGENDARY, "0")
         mockMvc.perform(MockMvcRequestBuilders.post("/items/")
                 .contentType(MediaType.APPLICATION_JSON)

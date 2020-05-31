@@ -1,6 +1,6 @@
 package br.com.woodriver.rpg.gateway.http
 
-import br.com.woodriver.rpg.domains.Item
+import br.com.woodriver.rpg.domain.Item
 import br.com.woodriver.rpg.usecases.item.CreateItemUseCase
 import br.com.woodriver.rpg.usecases.item.GetAllPaginatedUseCase
 import org.springframework.data.domain.Page

@@ -1,6 +1,6 @@
 package br.com.woodriver.rpg.usecases.skill
 
-import br.com.woodriver.rpg.domains.Skill
+import br.com.woodriver.rpg.domain.Skill
 import br.com.woodriver.rpg.gateway.repository.SkillRepository
 import org.springframework.stereotype.Component
 

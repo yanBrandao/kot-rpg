@@ -30,3 +30,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Unecessary folders ###
+gradle
+out
+postgres-data

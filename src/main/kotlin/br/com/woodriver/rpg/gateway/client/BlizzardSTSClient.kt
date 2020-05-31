@@ -1,7 +1,7 @@
 package br.com.woodriver.rpg.gateway.client
 
 import br.com.woodriver.rpg.configuration.BlizzardClientConfiguration
-import br.com.woodriver.rpg.domains.OAuthBlizzard
+import br.com.woodriver.rpg.domain.OAuthBlizzard
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.PostMapping
 

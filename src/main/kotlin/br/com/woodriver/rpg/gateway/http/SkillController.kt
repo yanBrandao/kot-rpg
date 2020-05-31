@@ -1,6 +1,6 @@
 package br.com.woodriver.rpg.gateway.http
 
-import br.com.woodriver.rpg.domains.Skill
+import br.com.woodriver.rpg.domain.Skill
 import br.com.woodriver.rpg.usecases.skill.CreateOrUpdateSkillUseCase
 import org.springframework.web.bind.annotation.*
 

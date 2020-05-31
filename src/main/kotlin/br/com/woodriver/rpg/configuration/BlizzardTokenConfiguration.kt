@@ -1,6 +1,6 @@
 package br.com.woodriver.rpg.configuration
 
-import br.com.woodriver.rpg.domains.OAuthBlizzard
+import br.com.woodriver.rpg.domain.OAuthBlizzard
 import br.com.woodriver.rpg.gateway.client.BlizzardSTSClient
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

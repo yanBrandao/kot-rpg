@@ -1,6 +1,6 @@
 package br.com.woodriver.rpg.usecases.clazz
 
-import br.com.woodriver.rpg.domains.Clazz
+import br.com.woodriver.rpg.domain.Clazz
 import br.com.woodriver.rpg.gateway.repository.ClazzRepository
 import org.springframework.stereotype.Component
 

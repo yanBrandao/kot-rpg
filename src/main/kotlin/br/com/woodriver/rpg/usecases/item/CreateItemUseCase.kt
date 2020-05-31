@@ -1,7 +1,7 @@
 package br.com.woodriver.rpg.usecases.item
 
 import br.com.woodriver.rpg.configuration.BlizzardTokenConfiguration
-import br.com.woodriver.rpg.domains.Item
+import br.com.woodriver.rpg.domain.Item
 import br.com.woodriver.rpg.exceptions.IconEmptyException
 import br.com.woodriver.rpg.gateway.client.BlizzardAPIClient
 import br.com.woodriver.rpg.gateway.repository.ItemRepository

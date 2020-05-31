@@ -1,6 +1,6 @@
 package br.com.woodriver.rpg.gateway.repository
 
-import br.com.woodriver.rpg.domains.User
+import br.com.woodriver.rpg.domain.User
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

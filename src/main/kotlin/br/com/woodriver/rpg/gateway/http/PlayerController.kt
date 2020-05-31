@@ -1,22 +1,26 @@
 package br.com.woodriver.rpg.gateway.http
 
-import br.com.woodriver.rpg.domains.Player
-import br.com.woodriver.rpg.gateway.dto.PlayerResponse
-import br.com.woodriver.rpg.usecases.player.CreateOrUpdatePlayerUseCase
-import br.com.woodriver.rpg.usecases.player.DeletePlayerUseCase
-import br.com.woodriver.rpg.usecases.player.GetAllPlayersUseCase
-import br.com.woodriver.rpg.usecases.player.Top10BestPlayersUseCase
+import br.com.woodriver.rpg.domain.player.Player
+import br.com.woodriver.rpg.domain.player.PlayerEditRequest
+import br.com.woodriver.rpg.usecases.player.*
+import org.apache.commons.logging.Log
+import org.apache.commons.logging.LogFactory
+
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("players")
+@RequestMapping("/players")
 class PlayerController(val top10BestPlayersUseCase: Top10BestPlayersUseCase,
                        val createOrUpdatePlayerUseCase: CreateOrUpdatePlayerUseCase,
                        val deletePlayerUseCase: DeletePlayerUseCase,
-                       val getAllPlayersUseCase: GetAllPlayersUseCase) {
+                       val getAllPlayersUseCase: GetAllPlayersUseCase,
+val playerByUserUseCase: PlayerByUserUseCase) {
+
+    private val logger: Log = LogFactory.getLog(this.javaClass)
+
 
     @GetMapping
-    fun all(): List<PlayerResponse>{
+    fun all(): List<PlayerEditRequest>{
         return getAllPlayersUseCase.execute()
     }
 
@@ -25,14 +29,20 @@ class PlayerController(val top10BestPlayersUseCase: Top10BestPlayersUseCase,
         return top10BestPlayersUseCase.execute()
     }
 
+    @GetMapping("/user/")
+    fun playerByUserID(@RequestHeader("x-kot-id") userId: Long): List<Player>{
+        return playerByUserUseCase.execute(userId)
+    }
+
     @PostMapping
-    fun create(@RequestBody player: Player): Player{
+    fun create(@RequestBody player: PlayerEditRequest): Player {
+        logger.debug("Create player $player")
         return createOrUpdatePlayerUseCase.execute(player)
     }
 
-    @PutMapping
-    fun update(@RequestBody player: Player): Player{
-        return createOrUpdatePlayerUseCase.execute(player, true)
+    @PutMapping("/{key}")
+    fun update(@PathVariable key: Long, @RequestBody player: PlayerEditRequest): Player {
+        return createOrUpdatePlayerUseCase.execute(player, true, key)
     }
 
     @DeleteMapping("/{key}")

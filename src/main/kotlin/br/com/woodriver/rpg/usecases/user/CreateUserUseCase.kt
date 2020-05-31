@@ -1,6 +1,6 @@
 package br.com.woodriver.rpg.usecases.user
 
-import br.com.woodriver.rpg.domains.User
+import br.com.woodriver.rpg.domain.User
 import br.com.woodriver.rpg.gateway.repository.UserRepository
 import org.springframework.stereotype.Component
 import java.util.*

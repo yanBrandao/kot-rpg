@@ -1,7 +1,8 @@
 package br.com.woodriver.rpg.usecases
 
-import br.com.woodriver.rpg.domains.User
-import br.com.woodriver.rpg.exceptions.PlayerAlreadyCreatedException
+import br.com.woodriver.rpg.TestUtils.Companion.createUser
+import br.com.woodriver.rpg.TestUtils.Companion.createUserWithEncryptPassword
+import br.com.woodriver.rpg.domain.User
 import br.com.woodriver.rpg.exceptions.UsernameOrPasswordException
 import br.com.woodriver.rpg.gateway.repository.UserRepository
 import br.com.woodriver.rpg.usecases.user.CreateUserUseCase
@@ -13,7 +14,6 @@ import org.junit.jupiter.api.assertThrows
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.dao.EmptyResultDataAccessException
 
 class UserUseCaseTests {
@@ -21,13 +21,16 @@ class UserUseCaseTests {
     private lateinit var loginUserUseCase: LoginUserUseCase
     private lateinit var createUserUseCase: CreateUserUseCase
 
+    private val email = "yan@gmail.com"
+    private var password = "yan123"
+
     @Mock
     lateinit var userRepository: UserRepository
 
     @BeforeEach
     fun setup(){
         userRepository = Mockito.mock(UserRepository::class.java)
-        val user = userSample()
+        val user = createUserWithEncryptPassword()
         `when`(userRepository.findFirstByEmail(Mockito.anyString())).thenReturn(user)
         loginUserUseCase = LoginUserUseCase(userRepository)
         createUserUseCase = CreateUserUseCase(userRepository)
@@ -35,8 +38,6 @@ class UserUseCaseTests {
 
     @Test
     fun `As user, I want to login with my credentials`(){
-        val email = "yan@gmail.com"
-        val password = "yan123"
         val response = loginUserUseCase.execute(email, password)
 
         Assertions.assertEquals("1", response)
@@ -44,8 +45,7 @@ class UserUseCaseTests {
 
     @Test
     fun `As user, I want to be notified when I wrong my password`(){
-        val email = "yan@gmail.com"
-        val password = "yan1234"
+        password = "Yan12345"
 
         assertThrows<UsernameOrPasswordException> { loginUserUseCase.execute(email, password) }
     }
@@ -53,16 +53,14 @@ class UserUseCaseTests {
     @Test
     fun `As user, I want to be notified when I use an email that doesn't exists`(){
         `when`(userRepository.findFirstByEmail(Mockito.anyString())).thenThrow(EmptyResultDataAccessException::class.java)
-        val email = "yan@gmail.com"
-        val password = "yan1234"
 
         assertThrows<UsernameOrPasswordException> { loginUserUseCase.execute(email, password) }
     }
 
     @Test
     fun `As an new user, I want to create an User`(){
-        var user = User(1L, "Yan", "yan@gmail.com", "yan123")
-        var userResponse = userSample()
+        var user = createUser()
+        var userResponse = createUserWithEncryptPassword()
         `when`<User>(userRepository.save(Mockito.any())).thenReturn(userResponse)
 
         val response = createUserUseCase.execute(user)
@@ -71,6 +69,4 @@ class UserUseCaseTests {
         Assertions.assertEquals(userResponse.name, response.name)
         Assertions.assertEquals(userResponse.key, response.key)
     }
-
-    private fun userSample(): User = User(1L, "Yan", "yan@gmail.com", "eWFuMTIz")
 }

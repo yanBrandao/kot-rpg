@@ -1,13 +1,12 @@
 package br.com.woodriver.rpg.usecases
 
-import br.com.woodriver.rpg.configuration.BlizzardTokenConfiguration
-import br.com.woodriver.rpg.domains.BlizzardItem
-import br.com.woodriver.rpg.domains.BlizzardItemDetail
-import br.com.woodriver.rpg.domains.Item
-import br.com.woodriver.rpg.domains.types.PositionType
-import br.com.woodriver.rpg.domains.types.RarityType
+import br.com.woodriver.rpg.TestContext
+import br.com.woodriver.rpg.TestUtils.Companion.createRingItem
+import br.com.woodriver.rpg.TestUtils.Companion.createRingItemWithIcon
+import br.com.woodriver.rpg.domain.BlizzardItem
+import br.com.woodriver.rpg.domain.BlizzardItemDetail
+import br.com.woodriver.rpg.domain.Item
 import br.com.woodriver.rpg.exceptions.IconEmptyException
-import br.com.woodriver.rpg.gateway.client.BlizzardAPIClient
 import br.com.woodriver.rpg.gateway.repository.ItemRepository
 import br.com.woodriver.rpg.usecases.item.CreateItemUseCase
 import org.junit.jupiter.api.Assertions
@@ -20,14 +19,9 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 
 @SpringBootTest
-class ItemUseCaseTests {
+class ItemUseCaseTests: TestContext() {
     lateinit var createItemUseCase: CreateItemUseCase
 
-    @MockBean
-    lateinit var blizzardTokenConfiguration: BlizzardTokenConfiguration
-
-    @MockBean
-    lateinit var blizzardAPIClient: BlizzardAPIClient
 
     @MockBean
     lateinit var itemRepository: ItemRepository
@@ -39,9 +33,7 @@ class ItemUseCaseTests {
         blizzardItemDetails.add(blizzardItemDetail)
         val blizzardItem = BlizzardItem("_link", blizzardItemDetails)
 
-        val item = Item(1L, "Ring", 10.0,
-                10.0, PositionType.FINGERS,
-                RarityType.EPIC, "detail")
+        val item = createRingItemWithIcon("detail")
 
         createItemUseCase = CreateItemUseCase(itemRepository,
                 blizzardAPIClient, blizzardTokenConfiguration)
@@ -52,20 +44,16 @@ class ItemUseCaseTests {
 
     @Test
     fun testCreateItemUseCase(){
-        val item = Item(1L, "Ring", 10.0,
-                             10.0, PositionType.FINGERS,
-                              RarityType.EPIC, "10005")
+        val item = createRingItem()
         var itemCreated = createItemUseCase.execute(item)
 
         Assertions.assertEquals("detail", itemCreated.icon)
-
     }
 
     @Test
     fun `As a user, If I pass an empty icon value, it will throw an error`(){
-        val item = Item(1L, "Ring", 10.0,
-                10.0, PositionType.FINGERS,
-                RarityType.EPIC, "")
+        val item = createRingItem()
+        item.icon = ""
         assertThrows<IconEmptyException> { createItemUseCase.execute(item) }
     }
 

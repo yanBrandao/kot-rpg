@@ -13,8 +13,6 @@ class BlizzardClientConfiguration() {
     @Value("\${blizzard.password}")
     lateinit var password: String
 
-
-
     @Bean
     fun basicAuthRequestInterceptor(): BasicAuthRequestInterceptor{
         return BasicAuthRequestInterceptor(username, password)
