@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository
 @Repository
 interface BagRepository: JpaRepository<Bag, BagId> {
 
-    fun findAllByBagIdBagPlrIdKey(pageable: Pageable, key: Long): Page<Bag>
+    fun findAllByBagIdBagCrtIdKey(pageable: Pageable, key: Long): Page<Bag>
 
-    fun findFirstByBagIdBagItmIdKeyAndBagIdBagPlrIdKey(itemKey: Long,
-                                                       playerKey: Long): Bag
+    fun findFirstByBagIdBagItmIdKeyAndBagIdBagCrtIdKey(itemKey: Long,
+                                                       characterKey: Long): Bag
 
 }

@@ -2,15 +2,15 @@ package br.com.woodriver.rpg.usecases
 
 import br.com.woodriver.rpg.TestUtils.Companion.assertPlayer
 import br.com.woodriver.rpg.TestUtils.Companion.createPlayerWithCustomRace
-import br.com.woodriver.rpg.domain.player.Player
+import br.com.woodriver.rpg.domain.player.Character
 import br.com.woodriver.rpg.domain.utils.types.*
 import br.com.woodriver.rpg.exceptions.KeyCannotBeZeroException
-import br.com.woodriver.rpg.gateway.mapper.PlayerMapper
-import br.com.woodriver.rpg.gateway.repository.PlayerRepository
-import br.com.woodriver.rpg.usecases.player.CreateOrUpdatePlayerUseCase
-import br.com.woodriver.rpg.usecases.player.DeletePlayerUseCase
-import br.com.woodriver.rpg.usecases.player.GetAllPlayersUseCase
-import br.com.woodriver.rpg.usecases.player.Top10BestPlayersUseCase
+import br.com.woodriver.rpg.gateway.mapper.CharacterMapper
+import br.com.woodriver.rpg.gateway.repository.CharacterRepository
+import br.com.woodriver.rpg.usecases.character.CreateOrUpdatePlayerUseCase
+import br.com.woodriver.rpg.usecases.character.DeletePlayerUseCase
+import br.com.woodriver.rpg.usecases.character.GetAllPlayersUseCase
+import br.com.woodriver.rpg.usecases.character.Top10BestPlayersUseCase
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -22,7 +22,7 @@ import org.mockito.Mockito.doNothing
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class PlayerUseCaseTests {
+class CharacterUseCaseTests {
 
     lateinit var createOrUpdatePlayerUseCase: CreateOrUpdatePlayerUseCase
 
@@ -33,29 +33,29 @@ class PlayerUseCaseTests {
     lateinit var deletePlayerUseCase: DeletePlayerUseCase
 
     @Mock
-    lateinit var playerRepository: PlayerRepository
+    lateinit var characterRepository: CharacterRepository
 
     @BeforeEach
     fun setup() {
-        createOrUpdatePlayerUseCase = CreateOrUpdatePlayerUseCase(playerRepository)
-        getAllPlayersUseCase = GetAllPlayersUseCase(playerRepository)
-        top10BestPlayersUseCase = Top10BestPlayersUseCase(playerRepository)
-        deletePlayerUseCase = DeletePlayerUseCase(playerRepository)
+        createOrUpdatePlayerUseCase = CreateOrUpdatePlayerUseCase(characterRepository)
+        getAllPlayersUseCase = GetAllPlayersUseCase(characterRepository)
+        top10BestPlayersUseCase = Top10BestPlayersUseCase(characterRepository)
+        deletePlayerUseCase = DeletePlayerUseCase(characterRepository)
 
-        val listPlayer: ArrayList<Player> = arrayListOf()
+        val listCharacter: ArrayList<Character> = arrayListOf()
         val player = createPlayerWithCustomRace(RaceType.DWARF)
-        listPlayer.add(player)
-        `when`(playerRepository.save<Player?>(Mockito.any())).thenReturn(player)
-        `when`(playerRepository.findAll()).thenReturn(listPlayer)
-        `when`(playerRepository.findTop10ByOrderByExpDesc()).thenReturn(listPlayer)
-        doNothing().`when`(playerRepository).delete(Mockito.any())
+        listCharacter.add(player)
+        `when`(characterRepository.save<Character?>(Mockito.any())).thenReturn(player)
+        `when`(characterRepository.findAll()).thenReturn(listCharacter)
+        `when`(characterRepository.findTop10ByOrderByExpDesc()).thenReturn(listCharacter)
+        doNothing().`when`(characterRepository).delete(Mockito.any())
     }
 
     @Test
     fun `As a player, I want to save me in database`() {
         val player = createPlayerWithCustomRace(RaceType.DWARF)
 
-        val playerCreated = createOrUpdatePlayerUseCase.execute(PlayerMapper().convertEntityToRequest(player))
+        val playerCreated = createOrUpdatePlayerUseCase.execute(CharacterMapper().convertEntityToRequest(player))
 
         assertPlayer(player, playerCreated)
     }
@@ -65,7 +65,7 @@ class PlayerUseCaseTests {
         val player = createPlayerWithCustomRace(RaceType.ORC)
         player.key = 0L
 
-        assertThrows<KeyCannotBeZeroException> { createOrUpdatePlayerUseCase.execute(PlayerMapper().convertEntityToRequest(player), true) }
+        assertThrows<KeyCannotBeZeroException> { createOrUpdatePlayerUseCase.execute(CharacterMapper().convertEntityToRequest(player), true) }
     }
 
     @Test

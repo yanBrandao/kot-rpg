@@ -1,7 +1,7 @@
 package br.com.woodriver.rpg.domain.player
 
 import br.com.woodriver.rpg.domain.Bag
-import br.com.woodriver.rpg.domain.PlayerEffect
+import br.com.woodriver.rpg.domain.CharacterEffect
 import br.com.woodriver.rpg.domain.SkillTree
 import br.com.woodriver.rpg.domain.utils.types.GenderType
 import br.com.woodriver.rpg.domain.utils.types.RaceType
@@ -11,44 +11,44 @@ import javax.persistence.*
 import javax.validation.constraints.Min
 
 @Entity
-@Table(name = "KOR_PLAYER")
-class Player() {
+@Table(name = "KOR_CHARACTER")
+class Character() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PLR_ID", unique = true, nullable = false)
+    @Column(name = "CRT_ID", unique = true, nullable = false)
     var key: Long = 1L
     @NotNull
-    @Column(name = "PLR_NAME")
+    @Column(name = "CRT_NAME")
     var name: String = "No Name"
     @NotNull
-    @Column(name = "PLR_USER")
+    @Column(name = "CRT_USER")
     var userId: Long = 1L
-    @Column(name = "PLR_GENDER")
+    @Column(name = "CRT_GENDER")
     var gender: GenderType = GenderType.MALE
-    @Column(name = "PLR_RACE")
+    @Column(name = "CRT_RACE")
     var race: RaceType = RaceType.HUMAN
-    @Column(name = "PLR_EXPERIENCE")
+    @Column(name = "CRT_EXPERIENCE")
     @Min(0)
     var exp: Double = 0.0
-    @Column(name = "PLR_MONEY")
+    @Column(name = "CRT_MONEY")
     var money: Double = 0.0
     @OneToMany(
-            mappedBy = "playerEffectId.pefPlrId",
+            mappedBy = "characterEffectId.cefCrtId",
             cascade = [CascadeType.ALL],
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     @JsonIgnore
-    var effects: Set<PlayerEffect> = emptySet()
+    var effects: Set<CharacterEffect> = emptySet()
     @OneToMany(
-            mappedBy = "bagId.bagPlrId",
+            mappedBy = "bagId.bagCrtId",
             cascade = [CascadeType.ALL],
             orphanRemoval = true
     )
     @JsonIgnore
     var bags: Set<Bag> = emptySet()
     @OneToMany(
-            mappedBy = "skillTreeId.sktPlrId",
+            mappedBy = "skillTreeId.sktCrtId",
             cascade = [CascadeType.ALL],
             orphanRemoval = true
     )
@@ -56,7 +56,7 @@ class Player() {
     var skillTree: Set<SkillTree> = emptySet()
 
 
-    fun playerLevel(): Double {
+    fun characterLevel(): Double {
         var expVariant = exp
         var moveBase = BASE_EXP
         var level = 0.0
@@ -78,7 +78,7 @@ class Player() {
                 race: RaceType,
                 exp: Double,
                 money: Double,
-                effects: Set<PlayerEffect>,
+                effects: Set<CharacterEffect>,
                 bags: Set<Bag>,
                 skillTree: Set<SkillTree>) : this(){
         this.key = key

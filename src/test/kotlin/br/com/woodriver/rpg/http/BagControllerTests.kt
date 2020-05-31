@@ -4,7 +4,7 @@ import br.com.woodriver.rpg.TestContext
 import br.com.woodriver.rpg.TestUtils.Companion.createBag
 import br.com.woodriver.rpg.domain.BlizzardItem
 import br.com.woodriver.rpg.domain.BlizzardItemDetail
-import br.com.woodriver.rpg.domain.player.Player
+import br.com.woodriver.rpg.domain.player.Character
 import br.com.woodriver.rpg.gateway.repository.ItemRepository
 import br.com.woodriver.rpg.usecases.item.CreateItemUseCase
 import com.fasterxml.jackson.core.JsonProcessingException
@@ -59,7 +59,7 @@ class BagControllerTests : TestContext() {
         mockMvc.perform(MockMvcRequestBuilders.post("/players/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
-                .content(ObjectMapper().writeValueAsString(bag.bagId.bagPlrId)))
+                .content(ObjectMapper().writeValueAsString(bag.bagId.bagCrtId)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk)
                 .andExpect(MockMvcResultMatchers.content().string(StringContains.containsString("")))
@@ -84,8 +84,8 @@ class BagControllerTests : TestContext() {
 
     //Converts Object to Json String
     @Throws(JsonProcessingException::class)
-    private fun convertObjectToJsonString(player: Player): String? {
+    private fun convertObjectToJsonString(character: Character): String? {
         val writer: ObjectWriter? = ObjectMapper().writer().withDefaultPrettyPrinter()
-        return writer?.writeValueAsString(player)
+        return writer?.writeValueAsString(character)
     }
 }

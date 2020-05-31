@@ -1,7 +1,7 @@
 package br.com.woodriver.rpg.domain.utils.compositekeys
 
 import br.com.woodriver.rpg.domain.Item
-import br.com.woodriver.rpg.domain.player.Player
+import br.com.woodriver.rpg.domain.player.Character
 import java.io.Serializable
 import javax.persistence.CascadeType
 import javax.persistence.Embeddable
@@ -11,12 +11,12 @@ import javax.persistence.ManyToOne
 @Embeddable
 class BagId(): Serializable{
         @ManyToOne(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-        lateinit var bagPlrId: Player
+        lateinit var bagCrtId: Character
         @ManyToOne(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
         lateinit var bagItmId: Item
 
-        constructor(player: Player, item: Item) : this(){
-                this.bagPlrId = player
+        constructor(character: Character, item: Item) : this(){
+                this.bagCrtId = character
                 this.bagItmId = item
         }
 

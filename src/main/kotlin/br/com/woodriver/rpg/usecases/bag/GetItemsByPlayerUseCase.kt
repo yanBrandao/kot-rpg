@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component
 class GetItemsByPlayerUseCase(val bagRepository: BagRepository) {
 
     fun execute(pageable: Pageable, key: Long): Page<Bag>{
-        return bagRepository.findAllByBagIdBagPlrIdKey(pageable, key)
+        return bagRepository.findAllByBagIdBagCrtIdKey(pageable, key)
     }
 }

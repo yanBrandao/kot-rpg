@@ -6,11 +6,11 @@ import br.com.woodriver.rpg.TestUtils.Companion.assertPlayerAttributes
 import br.com.woodriver.rpg.TestUtils.Companion.createBag
 import br.com.woodriver.rpg.TestUtils.Companion.createPlayerWithCustomRace
 import br.com.woodriver.rpg.domain.Bag
-import br.com.woodriver.rpg.domain.player.Player
+import br.com.woodriver.rpg.domain.player.Character
 import br.com.woodriver.rpg.domain.utils.types.RaceType
 import br.com.woodriver.rpg.exceptions.IncorrectItemQuantityException
 import br.com.woodriver.rpg.gateway.repository.BagRepository
-import br.com.woodriver.rpg.gateway.repository.PlayerRepository
+import br.com.woodriver.rpg.gateway.repository.CharacterRepository
 import br.com.woodriver.rpg.usecases.bag.GetItemsByPlayerUseCase
 import br.com.woodriver.rpg.usecases.bag.InsertItemIntoBagPlayerUseCase
 import br.com.woodriver.rpg.usecases.bag.SellPlayerItemUseCase
@@ -32,18 +32,18 @@ class BagUseCaseTests: TestContext() {
     lateinit var bagRepository: BagRepository
 
     @MockBean
-    lateinit var playerRepository: PlayerRepository
+    lateinit var characterRepository: CharacterRepository
 
     @BeforeEach
     fun setup(){
         getItemsByPlayerUseCase = GetItemsByPlayerUseCase(bagRepository)
         insertItemIntoBagPlayerUseCase = InsertItemIntoBagPlayerUseCase(bagRepository)
-        sellPlayerItemUseCase = SellPlayerItemUseCase(bagRepository, playerRepository)
+        sellPlayerItemUseCase = SellPlayerItemUseCase(bagRepository, characterRepository)
 
         `when`<Bag>(bagRepository.saveAndFlush(Mockito.any())).thenReturn(createBag())
-        `when`<Player>(playerRepository.saveAndFlush(Mockito.any())).thenReturn(createPlayerWithCustomRace(RaceType.DARK_ELF))
-        `when`<Player>(playerRepository.findFirstByKey(Mockito.anyLong())).thenReturn(createPlayerWithCustomRace(RaceType.DARK_ELF))
-        `when`<Bag>(bagRepository.findFirstByBagIdBagItmIdKeyAndBagIdBagPlrIdKey(Mockito.anyLong(),
+        `when`<Character>(characterRepository.saveAndFlush(Mockito.any())).thenReturn(createPlayerWithCustomRace(RaceType.DARK_ELF))
+        `when`<Character>(characterRepository.findFirstByKey(Mockito.anyLong())).thenReturn(createPlayerWithCustomRace(RaceType.DARK_ELF))
+        `when`<Bag>(bagRepository.findFirstByBagIdBagItmIdKeyAndBagIdBagCrtIdKey(Mockito.anyLong(),
                 Mockito.anyLong())).thenReturn(createBag())
     }
 

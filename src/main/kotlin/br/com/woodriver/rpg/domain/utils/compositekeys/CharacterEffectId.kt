@@ -1,19 +1,19 @@
 package br.com.woodriver.rpg.domain.utils.compositekeys
 
 import br.com.woodriver.rpg.domain.Effect
-import br.com.woodriver.rpg.domain.player.Player
+import br.com.woodriver.rpg.domain.player.Character
 import java.io.Serializable
 import javax.persistence.*
 
 @Embeddable
-class PlayerEffectId(): Serializable{
+class CharacterEffectId(): Serializable{
     @ManyToOne(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    lateinit var pefPlrId: Player
+    lateinit var cefCrtId: Character
     @ManyToOne(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    lateinit var pefEfcId: Effect
+    lateinit var cefEfcId: Effect
 
-    constructor(playerId: Player, effectId: Effect) : this() {
-        this.pefPlrId = playerId
-        this.pefEfcId = effectId
+    constructor(characterId: Character, effectId: Effect) : this() {
+        this.cefCrtId = characterId
+        this.cefEfcId = effectId
     }
 }

@@ -21,12 +21,12 @@ class Effect() {
     @Column(name = "EFC_DURATION")
     var duration: Double = 1.0
     @OneToMany(
-            mappedBy = "playerEffectId.pefEfcId",
+            mappedBy = "characterEffectId.cefEfcId",
             cascade = [CascadeType.ALL],
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
-    var effects: Set<PlayerEffect> = emptySet()
+    var effects: Set<CharacterEffect> = emptySet()
 
     constructor(key: Long,
                 name: String,

@@ -1,9 +1,9 @@
 package br.com.woodriver.rpg
 
 import br.com.woodriver.rpg.domain.*
-import br.com.woodriver.rpg.domain.player.Player
+import br.com.woodriver.rpg.domain.player.Character
 import br.com.woodriver.rpg.domain.utils.compositekeys.BagId
-import br.com.woodriver.rpg.domain.utils.compositekeys.PlayerEffectId
+import br.com.woodriver.rpg.domain.utils.compositekeys.CharacterEffectId
 import br.com.woodriver.rpg.domain.utils.compositekeys.SkillTreeId
 import br.com.woodriver.rpg.domain.utils.types.*
 import org.junit.jupiter.api.Assertions
@@ -12,17 +12,17 @@ class TestUtils {
 
     companion object {
         @JvmStatic
-        fun createPlayerWithCustomRace(race: RaceType): Player {
-            val playerEffects = emptySet<PlayerEffect>()
+        fun createPlayerWithCustomRace(race: RaceType): Character {
+            val playerEffects = emptySet<CharacterEffect>()
             val bag = emptySet<Bag>()
             val skills = emptySet<SkillTree>()
-            val player = Player(1L, "Yan", 1L, race, 0.0, 0.0, playerEffects, bag, skills)
+            val player = Character(1L, "Yan", 1L, race, 0.0, 0.0, playerEffects, bag, skills)
 
-            val playerEffectId = PlayerEffectId(player, createAuraEffect())
+            val playerEffectId = CharacterEffectId(player, createAuraEffect())
             val playerItemId = BagId(player, createRingItem())
             val playerSkillId = SkillTreeId(player, createSkill())
 
-            val playerEffect = PlayerEffect(playerEffectId)
+            val playerEffect = CharacterEffect(playerEffectId)
             val playerItem = Bag(playerItemId,false, 10)
             val playerSkill = SkillTree(playerSkillId, 1, "No Rune")
 
@@ -80,14 +80,14 @@ class TestUtils {
 
         @JvmStatic
         fun assertBag(expected: Bag, actual: Bag){
-            assertPlayerAttributes(expected.bagId.bagPlrId, actual.bagId.bagPlrId)
+            assertPlayerAttributes(expected.bagId.bagCrtId, actual.bagId.bagCrtId)
             assertItem(expected.bagId.bagItmId, actual.bagId.bagItmId)
             Assertions.assertEquals(expected.quantity, actual.quantity)
             Assertions.assertEquals(expected.isEquipped, actual.isEquipped)
         }
 
         @JvmStatic
-        fun assertPlayerAttributes(expected: Player, actual: Player){
+        fun assertPlayerAttributes(expected: Character, actual: Character){
             Assertions.assertEquals(expected.key, actual.key)
             Assertions.assertEquals(expected.name, actual.name)
             Assertions.assertEquals(expected.exp, actual.exp)
@@ -133,7 +133,7 @@ class TestUtils {
         }
 
         @JvmStatic
-        fun assertPlayer(expected: Player, actual: Player) {
+        fun assertPlayer(expected: Character, actual: Character) {
             //-- Assertions in player
             Assertions.assertEquals(expected.key, actual.key)
             Assertions.assertEquals(expected.name, actual.name)
@@ -149,8 +149,8 @@ class TestUtils {
                         actual.skillTree.elementAt(0).level)
                 Assertions.assertEquals(expected.skillTree.elementAt(0).rune,
                         actual.skillTree.elementAt(0).rune)
-                assertPlayerAttributes(expected.skillTree.elementAt(0).skillTreeId.sktPlrId,
-                        actual.skillTree.elementAt(0).skillTreeId.sktPlrId)
+                assertPlayerAttributes(expected.skillTree.elementAt(0).skillTreeId.sktCrtId,
+                        actual.skillTree.elementAt(0).skillTreeId.sktCrtId)
                 assertSkill(expected.skillTree.elementAt(0).skillTreeId.sktSklId,
                         actual.skillTree.elementAt(0).skillTreeId.sktSklId)
             }
@@ -164,17 +164,17 @@ class TestUtils {
                         expected.bags.elementAt(0).quantity)
                 assertItem(expected.bags.elementAt(0).bagId.bagItmId,
                         expected.bags.elementAt(0).bagId.bagItmId)
-                assertPlayerAttributes(expected.bags.elementAt(0).bagId.bagPlrId,
-                        expected.bags.elementAt(0).bagId.bagPlrId)
+                assertPlayerAttributes(expected.bags.elementAt(0).bagId.bagCrtId,
+                        expected.bags.elementAt(0).bagId.bagCrtId)
             }
 
             //Assertions in Player Effect
             Assertions.assertEquals(expected.effects.size, actual.effects.size)
             if(actual.effects.isNotEmpty()){
-                assertPlayerAttributes(expected.effects.elementAt(0).playerEffectId.pefPlrId,
-                        actual.effects.elementAt(0).playerEffectId.pefPlrId)
-                assertEffect(expected.effects.elementAt(0).playerEffectId.pefEfcId,
-                        actual.effects.elementAt(0).playerEffectId.pefEfcId)
+                assertPlayerAttributes(expected.effects.elementAt(0).characterEffectId.cefCrtId,
+                        actual.effects.elementAt(0).characterEffectId.cefCrtId)
+                assertEffect(expected.effects.elementAt(0).characterEffectId.cefEfcId,
+                        actual.effects.elementAt(0).characterEffectId.cefEfcId)
             }
         }
     }

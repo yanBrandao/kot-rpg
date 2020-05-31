@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class PlayerControllerTests() {
+class CharacterControllerTests() {
 
     @Autowired
     lateinit var mockMvc: MockMvc

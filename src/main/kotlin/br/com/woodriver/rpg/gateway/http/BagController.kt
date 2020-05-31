@@ -1,7 +1,7 @@
 package br.com.woodriver.rpg.gateway.http
 
 import br.com.woodriver.rpg.domain.Bag
-import br.com.woodriver.rpg.domain.player.Player
+import br.com.woodriver.rpg.domain.player.Character
 import br.com.woodriver.rpg.usecases.bag.GetItemsByPlayerUseCase
 import br.com.woodriver.rpg.usecases.bag.InsertItemIntoBagPlayerUseCase
 import br.com.woodriver.rpg.usecases.bag.SellPlayerItemUseCase
@@ -27,7 +27,7 @@ class BagController(val insertItemIntoBagPlayerUseCase: InsertItemIntoBagPlayerU
 
     @DeleteMapping("player/{playerKey}/{itemKey}")
     fun sellItem(@RequestHeader quantity: Int, @PathVariable playerKey: Long,
-                 @PathVariable itemKey: Long): Player {
+                 @PathVariable itemKey: Long): Character {
         return sellPlayerItemUseCase.execute(playerKey,
                 itemKey, quantity)
     }
