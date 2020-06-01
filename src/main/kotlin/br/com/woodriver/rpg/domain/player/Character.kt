@@ -1,8 +1,6 @@
 package br.com.woodriver.rpg.domain.player
 
-import br.com.woodriver.rpg.domain.Bag
-import br.com.woodriver.rpg.domain.CharacterEffect
-import br.com.woodriver.rpg.domain.SkillTree
+import br.com.woodriver.rpg.domain.*
 import br.com.woodriver.rpg.domain.utils.types.GenderType
 import br.com.woodriver.rpg.domain.utils.types.RaceType
 import com.fasterxml.jackson.annotation.JsonIgnore
@@ -21,8 +19,9 @@ class Character() {
     @Column(name = "CRT_NAME")
     var name: String = "No Name"
     @NotNull
-    @Column(name = "CRT_USER")
-    var userId: Long = 1L
+    @OneToOne
+    @JoinColumn(name = "CRT_USER_ID")
+    var user: User = User()
     @Column(name = "CRT_GENDER")
     var gender: GenderType = GenderType.MALE
     @Column(name = "CRT_RACE")
@@ -74,7 +73,7 @@ class Character() {
 
     constructor(key: Long,
                 name: String,
-                userId: Long,
+                user: User,
                 race: RaceType,
                 exp: Double,
                 money: Double,
@@ -83,7 +82,7 @@ class Character() {
                 skillTree: Set<SkillTree>) : this(){
         this.key = key
         this.name = name
-        this.userId = userId
+        this.user = user
         this.race = race
         this.exp = exp
         this.money = money

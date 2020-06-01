@@ -10,12 +10,17 @@ This is a living project, so if you want to use or change something, just send m
 
 
 
-![er-diagram-v2](./assets/er_diagram_v2.png)
+![er-diagram-v2](./assets/er_diagram_v3.png)
 
 
 ## Running the project
 
-To run KOT-RPG project, I recommend to follow the steps below:
+### Requirements
+
+There's a `docker-compose.yml` file, to start some external services, like `Postgres` database and `Wiremock` for offline request.
+To run compose file, just do `docker-compose up` in root project folder.
+
+To run KOT-RPG project, I recommend following this steps below:
 
  - Make an account in Blizzard API: https://develop.battle.net
  - After that, create a new client for your application in: https://develop.battle.net/access/clients

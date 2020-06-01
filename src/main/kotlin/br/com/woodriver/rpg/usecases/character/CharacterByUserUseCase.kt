@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component
 class CharacterByUserUseCase(val characterRepository: CharacterRepository) {
 
     fun execute(userId: Long): List<Character>{
-        return characterRepository.findCharacterByUserId(userId)
+        return characterRepository.findCharacterByUserKey(userId)
     }
 }

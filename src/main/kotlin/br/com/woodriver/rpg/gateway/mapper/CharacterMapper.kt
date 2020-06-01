@@ -9,7 +9,7 @@ class CharacterMapper {
         val characterDTO = CharacterEditRequest()
         characterDTO.name = character.name
         characterDTO.exp = character.exp
-        characterDTO.userId = character.userId
+        characterDTO.user = character.user
         characterDTO.money = character.money
         characterDTO.gender = character.gender
         characterDTO.race = character.race
@@ -23,7 +23,7 @@ class CharacterMapper {
         character.gender = characterEditRequest.gender
         character.money = characterEditRequest.money
         character.race = characterEditRequest.race
-        character.userId = characterEditRequest.userId
+        character.user = characterEditRequest.user
         return character
     }
 }

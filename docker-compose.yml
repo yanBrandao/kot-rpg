@@ -9,3 +9,9 @@ services:
     - ./postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: yan123
+  wiremock:
+    image: rodolpheche/wiremock:2.26.3-alpine
+    ports:
+      - "5001:8080"
+    volumes:
+      - ./ci/stubs:/home/wiremock

@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/oauth/token"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "blizzToken.json"
+  }
+}

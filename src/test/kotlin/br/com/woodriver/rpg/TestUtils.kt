@@ -16,7 +16,7 @@ class TestUtils {
             val playerEffects = emptySet<CharacterEffect>()
             val bag = emptySet<Bag>()
             val skills = emptySet<SkillTree>()
-            val player = Character(1L, "Yan", 1L, race, 0.0, 0.0, playerEffects, bag, skills)
+            val player = Character(1L, "Yan", User(), race, 0.0, 0.0, playerEffects, bag, skills)
 
             val playerEffectId = CharacterEffectId(player, createAuraEffect())
             val playerItemId = BagId(player, createRingItem())
@@ -94,7 +94,7 @@ class TestUtils {
             Assertions.assertEquals(expected.money, actual.money)
             Assertions.assertEquals(expected.gender, actual.gender)
             Assertions.assertEquals(expected.race, actual.race)
-            Assertions.assertEquals(expected.userId, actual.userId)
+            Assertions.assertEquals(expected.user, actual.user)
         }
 
         @JvmStatic
@@ -140,7 +140,7 @@ class TestUtils {
             Assertions.assertEquals(expected.exp, actual.exp)
             Assertions.assertEquals(expected.gender, actual.gender)
             Assertions.assertEquals(expected.race, actual.race)
-            Assertions.assertEquals(expected.userId, actual.userId)
+            Assertions.assertEquals(expected.user, actual.user)
 
             //-- Assertions in Player Skill
             Assertions.assertEquals(expected.skillTree.size, actual.skillTree.size)

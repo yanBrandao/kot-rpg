@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository
 interface CharacterRepository : JpaRepository<Character, Long> {
     fun findTop10ByOrderByExpDesc() : List<Character>
     fun findFirstByKey(key: Long): Character?
-    fun findCharacterByUserId(userId: Long): List<Character>
+    fun findCharacterByUserKey(userId: Long): List<Character>
 }
