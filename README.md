@@ -10,7 +10,7 @@ This is a living project, so if you want to use or change something, just send m
 
 
 
-![er-diagram-v2](./assets/er_diagram_v3.png)
+![er-diagram-v3](./assets/er_diagram_v3.png)
 
 
 ## Running the project
@@ -25,7 +25,7 @@ To run KOT-RPG project, I recommend following this steps below:
  - Make an account in Blizzard API: https://develop.battle.net
  - After that, create a new client for your application in: https://develop.battle.net/access/clients
  - It will generate a ClientID and ClientSecret, now you need to setup some environments variables to run the application.
- - KOT-RPG use `PostgresSQL` to persiste game information.
+ - KOT-RPG use `PostgresSQL` to persist game information.
  - I recommend use docker version with this command: `docker run --name kot_database -p your_port:5432 -e POSTGRES_PASSWORD=your_password -d postgres`
  - With all setup you can set the environments variables below:
 ```ruby
