@@ -1,5 +1,5 @@
 # kot-rpg
-![img](https://travis-ci.org/yanBrandao/kot-rpg.svg?branch=develop)
+[![Build Status](https://travis-ci.org/yanBrandao/kot-rpg.svg?branch=master)](https://travis-ci.org/yanBrandao/kot-rpg)
 [![Coverage Status](https://coveralls.io/repos/github/yanBrandao/kot-rpg/badge.svg?branch=master)](https://coveralls.io/github/yanBrandao/kot-rpg?branch=master)
 [![Hits-of-Code](https://hitsofcode.com/github/yanBrandao/kot-rpg)](https://hitsofcode.com/view/github/yanBrandao/kot-rpg)
 
