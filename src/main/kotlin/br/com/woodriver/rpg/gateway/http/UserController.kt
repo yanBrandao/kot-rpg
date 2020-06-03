@@ -31,7 +31,7 @@ class UserController(val createUserUseCase: CreateUserUseCase,
     ])
     @PostMapping(value = ["/login"])
     fun login(@RequestHeader(name = "x-kot-email") email: String,
-              @RequestHeader(name = "x-kot-password") password: String): ResponseEntity<String>{
+              @RequestHeader(name = "x-kot-password") password: String): ResponseEntity<User>{
         return ResponseEntity.ok(loginUserUseCase.execute(email, password))
     }
 }

@@ -1,0 +1,39 @@
+{
+  "properties": [
+    {
+      "name": "blizzard.username",
+      "type": "java.lang.String",
+      "description": "Username for blizzard API."
+    },
+    {
+      "name": "blizzard.password",
+      "type": "java.lang.String",
+      "description": "Password for blizzard API."
+    },
+    {
+      "name": "blizzard.host-token",
+      "type": "java.lang.String",
+      "description": "URL to connect Blizzard STS"
+    },
+    {
+      "name": "blizzard.host-api",
+      "type": "java.lang.String",
+      "description": "URL of Blizzard API"
+    },
+    {
+      "name": "service.version",
+      "type": "java.lang.String",
+      "description": "Service version for SwaggerUI"
+    },
+    {
+      "name": "service.title",
+      "type": "java.lang.String",
+      "description": "Service Title for SwaggerUI"
+    },
+    {
+      "name": "service.description",
+      "type": "java.lang.String",
+      "description": "A brief description of service"
+    }
+  ]
+}

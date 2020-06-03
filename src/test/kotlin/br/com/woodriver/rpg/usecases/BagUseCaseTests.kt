@@ -40,7 +40,7 @@ class BagUseCaseTests: TestContext() {
         insertItemIntoBagPlayerUseCase = InsertItemIntoBagPlayerUseCase(bagRepository)
         sellPlayerItemUseCase = SellPlayerItemUseCase(bagRepository, characterRepository)
 
-        `when`<Bag>(bagRepository.saveAndFlush(Mockito.any())).thenReturn(createBag())
+        `when`<Bag>(bagRepository.save(Mockito.any())).thenReturn(createBag())
         `when`<Character>(characterRepository.saveAndFlush(Mockito.any())).thenReturn(createPlayerWithCustomRace(RaceType.DARK_ELF))
         `when`<Character>(characterRepository.findFirstByKey(Mockito.anyLong())).thenReturn(createPlayerWithCustomRace(RaceType.DARK_ELF))
         `when`<Bag>(bagRepository.findFirstByBagIdBagItmIdKeyAndBagIdBagCrtIdKey(Mockito.anyLong(),

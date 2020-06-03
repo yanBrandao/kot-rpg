@@ -9,6 +9,8 @@ import br.com.woodriver.rpg.domain.utils.types.RarityType
 import br.com.woodriver.rpg.gateway.repository.ItemRepository
 import br.com.woodriver.rpg.usecases.item.CreateItemUseCase
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.apache.commons.logging.Log
+import org.apache.commons.logging.LogFactory
 import org.hamcrest.core.StringContains
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -23,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import kotlin.math.log
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -37,6 +40,7 @@ class ItemControllerTests : TestContext() {
     @MockBean
     lateinit var itemRepository: ItemRepository
 
+    private val logger: Log = LogFactory.getLog(ItemControllerTests::class.java)
 
     @BeforeEach
     fun setup() {
@@ -48,6 +52,8 @@ class ItemControllerTests : TestContext() {
                 blizzardTokenConfiguration)
         val item = Item(1L, "Ring", 100.0, 100.0, PositionType.RIGHT_EAR, RarityType.LEGENDARY, "0")
         `when`(blizzardAPIClient.getItemIcon(Mockito.anyString(), Mockito.anyString())).thenReturn(blizzardItem)
+        logger.info("Blizzard item key ${blizzardItemDetail.key}")
+        logger.info("Blizzard item link ${blizzardItem.links}")
         `when`(itemRepository.save<Item?>(Mockito.any())).thenReturn(item)
     }
 

@@ -8,8 +8,6 @@ This is a living project, so if you want to use or change something, just send m
 
 ## ER
 
-
-
 ![er-diagram-v3](./assets/er_diagram_v3.png)
 
 

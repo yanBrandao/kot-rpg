@@ -43,4 +43,12 @@ class Item() {
                 this.rarity = rarity
                 this.icon = icon
         }
+
+        companion object{
+                enum class itemProperties {
+                        KEY, NAME, WEIGHT,
+                        PRICE, POSITION,
+                        RARITY
+                }
+        }
 }

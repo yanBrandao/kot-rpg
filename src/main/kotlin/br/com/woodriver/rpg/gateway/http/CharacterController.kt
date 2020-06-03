@@ -30,7 +30,7 @@ class CharacterController(val top10BestPlayersUseCase: Top10BestPlayersUseCase,
     }
 
     @GetMapping("/user/")
-    fun charecterByUserID(@RequestHeader("x-kot-id") userId: Long): List<Character>{
+    fun characterByUserID(@RequestHeader("x-kot-id") userId: Long): List<Character>{
         return characterByUserUseCase.execute(userId)
     }
 

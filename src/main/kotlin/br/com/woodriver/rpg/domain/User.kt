@@ -8,7 +8,6 @@ import javax.persistence.*
 data class User(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @JsonIgnore
         @Column(name = "USR_ID")
         val key: Long = 0,
         @Column(name = "USR_NAME")

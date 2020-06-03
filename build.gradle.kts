@@ -12,7 +12,7 @@ plugins {
 	id ("org.sonarqube") version "2.8"
 }
 
-group = "com.example"
+group = "br.com.woodriver"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -39,6 +39,7 @@ dependencies {
 	implementation("io.springfox:springfox-swagger2:2.9.2")
 	implementation("io.springfox:springfox-swagger-ui:2.9.2")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:2.2.1.RELEASE")
+	implementation ("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 	implementation("org.springframework.boot:spring-boot-configuration-processor")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	implementation("io.opentracing.contrib:opentracing-spring-cloud-starter:0.4.0")

@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/data/wow/media/item/([0-9]*)\\?namespace=static-us&locale=en_US"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "blizzItem.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

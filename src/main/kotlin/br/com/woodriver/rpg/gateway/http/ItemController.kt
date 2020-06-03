@@ -4,7 +4,9 @@ import br.com.woodriver.rpg.domain.Item
 import br.com.woodriver.rpg.usecases.item.CreateItemUseCase
 import br.com.woodriver.rpg.usecases.item.GetAllPaginatedUseCase
 import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
+import org.springframework.data.domain.Sort
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -19,7 +21,11 @@ class ItemController(
     }
 
     @GetMapping(name = "Get all items")
-    fun getItems(pageable: Pageable): Page<Item>? {
+    fun getItems(@RequestParam(defaultValue = "0") page: Int,
+                 @RequestParam(defaultValue = "10") size: Int = 10,
+                 @RequestParam(defaultValue = "ASC") direction: Sort.Direction,
+                 @RequestParam(defaultValue = "KEY") itemProperties: Item.Companion.itemProperties): Page<Item>? {
+        var pageable = PageRequest.of(page, size, direction, itemProperties.toString().toLowerCase())
         return getAllPaginatedUseCase.execute(pageable)
     }
 }

@@ -15,13 +15,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 @Configuration
 @EnableSwagger2
 class SwaggerConfiguration() {
-    @Value("\${app.title}")
+    @Value("\${service.title}")
     lateinit var title: String
 
-    @Value("\${app.description}")
+    @Value("\${service.description}")
     lateinit var description: String
 
-    @Value("\${app.version}")
+    @Value("\${service.version}")
     lateinit var version: String
 
 

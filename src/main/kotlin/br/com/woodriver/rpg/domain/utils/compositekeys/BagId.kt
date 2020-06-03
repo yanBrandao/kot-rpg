@@ -10,9 +10,9 @@ import javax.persistence.ManyToOne
 
 @Embeddable
 class BagId(): Serializable{
-        @ManyToOne(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+        @ManyToOne(cascade = [CascadeType.ALL])
         lateinit var bagCrtId: Character
-        @ManyToOne(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+        @ManyToOne(cascade = [CascadeType.ALL])
         lateinit var bagItmId: Item
 
         constructor(character: Character, item: Item) : this(){

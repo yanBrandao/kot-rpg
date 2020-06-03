@@ -40,7 +40,7 @@ class UserUseCaseTests {
     fun `As user, I want to login with my credentials`(){
         val response = loginUserUseCase.execute(email, password)
 
-        Assertions.assertEquals("1", response)
+        Assertions.assertEquals("1", response.key.toString())
     }
 
     @Test

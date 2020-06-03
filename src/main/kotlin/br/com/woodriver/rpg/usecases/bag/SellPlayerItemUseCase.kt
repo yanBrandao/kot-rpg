@@ -20,7 +20,7 @@ class SellPlayerItemUseCase(val bagRepository: BagRepository,
             bagRepository.delete(bagItem)
         else{
             bagItem.quantity -= quantity
-            bagRepository.saveAndFlush(bagItem)
+            bagRepository.save(bagItem)
         }
         val player = characterRepository.findFirstByKey(playerKey)!!
 

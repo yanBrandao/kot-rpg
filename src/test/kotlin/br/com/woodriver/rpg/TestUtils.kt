@@ -13,22 +13,22 @@ class TestUtils {
     companion object {
         @JvmStatic
         fun createPlayerWithCustomRace(race: RaceType): Character {
-            val playerEffects = emptySet<CharacterEffect>()
-            val bag = emptySet<Bag>()
-            val skills = emptySet<SkillTree>()
-            val player = Character(1L, "Yan", User(), race, 0.0, 0.0, playerEffects, bag, skills)
+            val playerEffects = HashSet<CharacterEffect>()
+            val bag = HashSet<Bag>()
+            val skills = HashSet<SkillTree>()
+            val player = Character(1L, "Yan", createUser(), race, 0.0, 0.0, playerEffects, bag, skills)
 
             val playerEffectId = CharacterEffectId(player, createAuraEffect())
             val playerItemId = BagId(player, createRingItem())
             val playerSkillId = SkillTreeId(player, createSkill())
 
             val playerEffect = CharacterEffect(playerEffectId)
-            val playerItem = Bag(playerItemId,false, 10)
+            val playerItem = Bag(playerItemId, false, 10)
             val playerSkill = SkillTree(playerSkillId, 1, "No Rune")
 
-            playerEffects.plus(playerEffect)
-            bag.plus(playerItem)
-            skills.plus(playerSkill)
+            playerEffects.add(playerEffect)
+            bag.add(playerItem)
+            skills.add(playerSkill)
 
             return player
         }
@@ -55,7 +55,14 @@ class TestUtils {
 
         @JvmStatic
         fun createAuraEffect(): Effect {
-            return Effect(2L, "None", 0.0, EffectType.AURA, 0.0, 0.0)
+            val effect = Effect(2L, "None", 0.0, EffectType.AURA, 0.0, 0.0)
+            effect.key = 3L
+            effect.name = "No Name"
+            effect.value = 2.0
+            effect.type = EffectType.DEBUFF
+            effect.range = 30.0
+            effect.duration = 30.0
+            return effect
         }
 
         @JvmStatic

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component
 class InsertItemIntoBagPlayerUseCase(val bagRepository: BagRepository) {
 
     fun execute(bag: Bag): Bag{
-        return bagRepository.saveAndFlush(bag)
+        return bagRepository.save(bag)
     }
 }

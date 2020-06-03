@@ -5,6 +5,9 @@
   },
   "response": {
     "status": 200,
-    "bodyFileName": "blizzToken.json"
+    "bodyFileName": "blizzToken.json",
+    "headers": {
+      "Content-Type": "application/json"
+    }
   }
 }
