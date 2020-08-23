@@ -1,4 +1,4 @@
-package br.com.woodriver.rpg.domains
+package br.com.woodriver.blizzard.domains
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

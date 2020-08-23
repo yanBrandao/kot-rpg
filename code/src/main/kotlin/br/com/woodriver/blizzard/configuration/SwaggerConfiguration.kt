@@ -1,4 +1,4 @@
-package br.com.woodriver.rpg.configuration
+package br.com.woodriver.blizzard.configuration
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -14,7 +14,7 @@ class SwaggerConfiguration{
     @Bean
     fun api(): Docket = Docket(DocumentationType.SWAGGER_2)
             .select()
-            .apis(RequestHandlerSelectors.basePackage("br.com.woodriver.rpg"))
+            .apis(RequestHandlerSelectors.basePackage("br.com.woodriver.blizzard"))
             .paths(PathSelectors.any())
             .build()
 }

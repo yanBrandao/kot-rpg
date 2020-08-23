@@ -1,4 +1,4 @@
-package br.com.woodriver.rpg.exceptions
+package br.com.woodriver.blizzard.exceptions
 
 import java.lang.RuntimeException
 

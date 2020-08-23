@@ -1,1 +1,1 @@
-rootProject.name = "rpg"
+rootProject.name = "blizzard-mock"

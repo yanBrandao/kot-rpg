@@ -1,4 +1,4 @@
-package br.com.woodriver.rpg.domains
+package br.com.woodriver.blizzard.domains
 
 class BlizzardItemDetail(
         val key: String,

@@ -1,14 +1,12 @@
-package br.com.woodriver.rpg
+package br.com.woodriver.blizzard
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.cloud.openfeign.EnableFeignClients
 
 
 @SpringBootApplication
-@EnableFeignClients
-class RpgApplication
+class BlizzardApplication
 
 fun main(args: Array<String>) {
-	runApplication<RpgApplication>(*args)
+	runApplication<BlizzardApplication>(*args)
 }
