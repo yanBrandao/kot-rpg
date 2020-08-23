@@ -45,7 +45,7 @@ class Item() {
         }
 
         companion object{
-                enum class itemProperties {
+                enum class ItemProperties {
                         KEY, NAME, WEIGHT,
                         PRICE, POSITION,
                         RARITY

@@ -80,6 +80,9 @@ coveralls {
 
 sonarqube {
   properties {
+	  property("sonar.organization", "yanbrandao")
+	  property("sonar.host.url", "https://sonarcloud.io")
+	  property("sonar.login", "cd56b02771ef8767eb873fd59691baa69ac3600c")
 	  property("sonar.projectKey", "yanBrandao_kot-rpg")
 	  property("sonar.version", "${version} - ${Runtime.getRuntime()}")
 	  property("sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/jacocoReport/jacocoReport.xml")
