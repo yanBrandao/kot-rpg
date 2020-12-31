@@ -7,10 +7,6 @@
 KOT-RPG is a REST API developed in Spring-boot using **Kotlin** and Hexagonal architecture based in **D**omain **D**riven **D**evelopment. The main goal of this API is to store a player information based in a **r**ole-**p**lay **g**ame. 
 This is a living project, so if you want to use or change something, just email me.
 
-## ER
-
-![er-diagram-v3](assets/legacy/er_diagram_v3.png)
-
 
 ## Under construction :construction:
 
