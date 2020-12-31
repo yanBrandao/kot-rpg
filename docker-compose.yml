@@ -3,6 +3,7 @@ version: '3.1'
 services:
   database:
     image: postgres
+    container_name: kot-database
     ports:
       - "5434:5432"
     volumes:
@@ -10,6 +11,7 @@ services:
     environment:
       POSTGRES_PASSWORD: yan123
   wiremock:
+    container_name: kot-mocks
     image: rodolpheche/wiremock:2.26.3-alpine
     ports:
       - "5001:8080"

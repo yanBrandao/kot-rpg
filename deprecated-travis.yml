@@ -1,0 +1,18 @@
+language: java
+jdk:
+- oraclejdk11
+cache:
+  directories:
+  - ".autoconf"
+  - "$HOME/.m2"
+script:
+  - gradle assemble
+branches:
+  only:
+  - master
+
+addons:
+  sonarcloud:
+    organization: "yanbrandao"
+    token:
+        secure: GzFVWDbVBJn5EU14dcTQ/8dSyeMDjKh7KvMTPHSWnuh4JCieHxtoz3HetXqyY90sStMxju3s+clPjE/WWM0njyMaVxJi9E1jpXA7C6yURm2kjdT9YifGVfwOfYq2qigGhwBLQMP5qkc5fRBZIG4tzXJcnl0Do23JHmuepKDHZjVrg7f3r+biL+WYPGHiDq3oHYbYsDnbFdsIkgbgf4D86oLcnbwsTO5bjKKjo6fVNC+rF/bx9wXVKaa4RPlVkZfn+spu2ZtIu2S5o6KYKOCwRWpjBB6OJwXqSi/2pcJ/wusBHljo+173tHXRkfjODsAyw9XM5tQKhRdmqgz6FrA7Ep9O1uRRBLA90QgTwo3qlmiyN3QqBGtOahtPtX9aucVa+GfBnsLliToaWc1ezSDK+/PlEqSa03S+07rC0ATrdWDhkG7NT6nmXnJQ30FydVHpsxYI+hVlrPXQYU1B0upYsMiYGatGuzJTEXQzojdjZ39avsknvBYheQjbnNGxtArMGxmM9OzaWx1BmxMwtOOvt0Wi2TSQEC23TFgO//oQGVNLtx+piTMH0rTmIBDOKr8OO3T0scpTJgs+LOdB6j8GC6UMkwXU7l8agB35x0nMR8R0easbXMkrbu+J2MDzrovcSkp9Ykxjj0vtu5EuWJUxrkJzUYiuUBxgYn7AOqsl6qc=
