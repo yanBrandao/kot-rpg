@@ -1,8 +1,8 @@
 package br.com.woodriver.rpg.adapter.output.database.keys
 
+import jakarta.persistence.Column
+import jakarta.persistence.Embeddable
 import java.io.Serializable
-import javax.persistence.Column
-import javax.persistence.Embeddable
 
 @Embeddable
 data class ItemsInBagKey(

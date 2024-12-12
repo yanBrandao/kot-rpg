@@ -4,16 +4,22 @@ services:
   database:
     image: postgres
     container_name: kot-database
+    networks:
+      - local
     ports:
-      - "5434:5432"
-    volumes:
-    - ./postgres-data:/var/lib/postgresql/data
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: yan123
   wiremock:
     container_name: kot-mocks
-    image: rodolpheche/wiremock:2.26.3-alpine
+    image: wiremock/wiremock
+    networks:
+      - local
     ports:
-      - "5001:8080"
+      - "36003:8080"
     volumes:
       - ./ci/stubs:/home/wiremock
+
+networks:
+  local:
+    driver: bridge

@@ -1,8 +1,13 @@
 package br.com.woodriver.rpg.adapter.output.database.entity
 
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 import org.apache.logging.log4j.util.Strings
 import java.math.BigDecimal
-import javax.persistence.*
 
 @Entity(name = "Item")
 @Table(name = "KOT_ITEM")

@@ -1,7 +1,12 @@
 package br.com.woodriver.rpg.adapter.output.database.entity
 
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.Table
 import org.apache.logging.log4j.util.Strings
-import javax.persistence.*
 
 @Entity(name = "Bag")
 @Table(name = "KOT_BAG")

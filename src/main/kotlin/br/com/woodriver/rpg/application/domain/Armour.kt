@@ -6,4 +6,4 @@ import java.math.BigDecimal
 data class Armour(
     val position: String = Strings.EMPTY,
     val isUnique: Boolean = false
-): Item()
+)

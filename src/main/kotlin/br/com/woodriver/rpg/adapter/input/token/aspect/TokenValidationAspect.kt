@@ -1,5 +1,6 @@
 package br.com.woodriver.rpg.adapter.input.token.aspect
 
+import br.com.woodriver.rpg.adapter.input.token.TokenUserValidation
 import br.com.woodriver.rpg.adapter.output.exception.UnauthorizedException
 import br.com.woodriver.rpg.adapter.output.logging.logger
 import com.auth0.jwt.JWT
@@ -25,7 +26,7 @@ class TokenValidationAspect {
     @Throws(Exception::class)
     fun tokenValidation(pjp: ProceedingJoinPoint): Any {
         val methodSignature: MethodSignature = pjp.signature as MethodSignature
-        if(AnnotationUtils.findAnnotation(methodSignature.method, TokenValidationAspect::class.java) != null) {
+        if(AnnotationUtils.findAnnotation(methodSignature.method, TokenUserValidation::class.java) != null) {
             val token = getParameter(pjp, AUTH_HEADER_NAME)
             try {
                 val jwt = JWT.decode(token)

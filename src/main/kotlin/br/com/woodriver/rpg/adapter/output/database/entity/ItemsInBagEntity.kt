@@ -1,7 +1,11 @@
 package br.com.woodriver.rpg.adapter.output.database.entity
 
 import br.com.woodriver.rpg.adapter.output.database.keys.ItemsInBagKey
-import javax.persistence.*
+import jakarta.persistence.EmbeddedId
+import jakarta.persistence.Entity
+import jakarta.persistence.ManyToOne
+import jakarta.persistence.MapsId
+import jakarta.persistence.Table
 
 @Entity
 @Table(name = "KOT_ITEMS_IN_BAG")
