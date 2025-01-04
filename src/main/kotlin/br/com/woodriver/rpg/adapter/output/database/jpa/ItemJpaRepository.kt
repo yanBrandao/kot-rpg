@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository
 interface ItemJpaRepository: JpaRepository<ItemEntity, Long> {
 
     fun findItemEntityByName(name: String): ItemEntity
+
+    fun findAllBy
 }

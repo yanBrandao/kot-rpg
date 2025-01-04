@@ -11,12 +11,12 @@ import jakarta.persistence.Table
 @Table(name = "KOT_ITEMS_IN_BAG")
 data class ItemsInBagEntity(
         @EmbeddedId
-    val id: ItemsInBagKey = ItemsInBagKey(),
+        val id: ItemsInBagKey = ItemsInBagKey(),
         @ManyToOne
-    @MapsId("bagId")
-    val bag: BagEntity = BagEntity(),
+        @MapsId("bagId")
+        val bag: BagEntity = BagEntity(),
         @ManyToOne
-    @MapsId("itemId")
-    val item: ItemEntity = ItemEntity(),
+        @MapsId("itemId")
+        val item: ItemEntity = ItemEntity(),
         val quantity: Int = 0
 )
